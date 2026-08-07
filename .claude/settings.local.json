@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npx shadcn@latest mcp init --client claude)",
+      "Bash(claude mcp *)"
+    ]
+  }
+}
