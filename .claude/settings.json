@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "WebFetch(domain:docs.web3forms.com)",
+      "WebFetch(domain:web3forms.com)",
+      "Bash(tasklist //FI \"IMAGENAME eq OneDrive.exe\")",
+      "Bash(npx tsc *)",
+      "PowerShell(Get-CimInstance Win32_Process -Filter \"ProcessId=1652 or ProcessId=6004\")",
+      "PowerShell(Get-Process | Where-Object { $_.ProcessName -match \"node|next\" } | Select-Object Id, ProcessName, StartTime, Path | Format-Table -AutoSize)",
+      "Bash(node -e \"require\\('@tailwindcss/node'\\)\")",
+      "Bash(git ls-tree *)",
+      "Bash(git check-ignore *)"
+    ]
+  }
+}

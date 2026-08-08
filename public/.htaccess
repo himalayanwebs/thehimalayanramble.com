@@ -1,0 +1,20 @@
+# Redirects every old-site URL (e.g. /shimla.html or /himachal-pradesh/shimla.html)
+# to its equivalent clean, trailing-slash URL on the new site
+# (e.g. /shimla/ or /himachal-pradesh/shimla/), so existing Google rankings,
+# WhatsApp/social links, and bookmarks from the old plain-HTML site keep
+# working instead of 404ing after cutover. Requires Apache/LiteSpeed hosting
+# with mod_rewrite (Hostinger's standard shared hosting) — on a host that
+# doesn't read .htaccess this file is simply ignored, not harmful.
+RewriteEngine On
+
+# /index.html -> /
+RewriteRule ^index\.html$ / [R=301,L]
+
+# /{region}/index.html -> /{region}/
+RewriteRule ^(.+)/index\.html$ /$1/ [R=301,L]
+
+# /contact.html, /blog.html, /terms.html -> /contact/, /blog/, /terms/
+RewriteRule ^([^/]+)\.html$ /$1/ [R=301,L]
+
+# /{region}/{place}.html -> /{region}/{place}/
+RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
