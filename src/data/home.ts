@@ -1,6 +1,6 @@
 import type { FeatureBlockData } from "@/components/blocks/feature-block";
 import type { MosaicTile } from "@/components/blocks/mosaic";
-import type { SignatureRoute } from "@/components/home/signature-routes";
+import type { SignatureRoute } from "@/components/home/route-list";
 import type { TrustStat } from "@/components/blocks/trust-strip";
 
 export const HOME_SEO = {

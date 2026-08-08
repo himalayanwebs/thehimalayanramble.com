@@ -8,7 +8,7 @@ import { Mosaic } from "@/components/blocks/mosaic";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { Reveal } from "@/components/blocks/reveal";
 import { StampMark } from "@/components/home/stamp-mark";
-import { SignatureRoutes } from "@/components/home/signature-routes";
+import { SignatureRoutes } from "@/components/home/route-list";
 import { TopographyBackground } from "@/components/effects/topography-background";
 import { CONTACT } from "@/data/nav";
 import {

@@ -22,3 +22,9 @@ npm-debug.log*
 # Renamed-aside disk-corrupted directories (see project memory/session notes) —
 # undeletable via normal means, harmless to leave in place, must stay untracked.
 *-corrupted-*/
+
+# This exact file/directory-entry is corrupted at the filesystem level —
+# unreadable, unwritable, undeletable via every tool tried. Superseded by
+# src/components/home/route-list.tsx; must stay untracked so git operations
+# don't choke on it. Safe to actually delete once a disk check clears it.
+src/components/home/signature-routes.tsx

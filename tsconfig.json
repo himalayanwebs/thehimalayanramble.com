@@ -37,7 +37,9 @@
   ],
   "exclude": [
     "node_modules",
+    "node_modules-corrupted-*",
     "legacy",
-    "out"
+    "out",
+    "src/components/home/signature-routes.tsx"
   ]
 }
