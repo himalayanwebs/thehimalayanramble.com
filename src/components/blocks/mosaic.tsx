@@ -19,7 +19,7 @@ export function Mosaic({ tiles, group = "mosaic" }: { tiles: MosaicTile[]; group
       {tiles.map((tile) => (
         <Reveal key={tile.href} group={group} asChild>
           <Link href={tile.href} className={cn("mosaic__tile", tile.large && "mosaic__tile--lg")}>
-            <Media image={tile.image} aspect={tile.aspect ?? (tile.large ? "16x9" : "4x5")} />
+            <Media image={tile.image} aspect={tile.aspect ?? (tile.large ? "16x9" : "4x5")} priority={tile.large} />
             <div className="mosaic__name">
               <h3 className="h3">{tile.name}</h3>
               {tile.meta && <span className="meta">{tile.meta}</span>}

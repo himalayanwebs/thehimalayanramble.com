@@ -313,11 +313,11 @@
   .btn-base:active { transform: translateY(0) scale(0.97); }
 
   .btn-accent {
-    background: var(--brand-accent);
-    border-color: var(--brand-accent);
+    background: var(--brand-accent-ink);
+    border-color: var(--brand-accent-ink);
     color: var(--paper);
   }
-  .btn-accent:hover { background: var(--brand-accent-ink); border-color: var(--brand-accent-ink); }
+  .btn-accent:hover { background: var(--brand-accent); border-color: var(--brand-accent); }
 
   .btn-brand-ghost {
     background: transparent;
@@ -487,7 +487,7 @@
     overflow: hidden;
   }
   .on-dark .media, .section-dark .media, .section-void .media, .hero .media {
-    background: #211f1c;
+    background: var(--void);
     border-color: var(--rule-on-dark);
   }
   .media--21x9 { aspect-ratio: 21 / 9; }
@@ -586,17 +586,33 @@
     flex-direction: column;
     gap: var(--space-lg);
     margin-top: var(--space-xl);
+  }
+  .testimonials-marquee__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--stone);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.4em 0.75em;
+    cursor: pointer;
+  }
+  .testimonials-marquee__toggle:hover { color: var(--ink); border-color: var(--ink); }
+  .testimonial-row {
+    overflow: hidden;
     mask-image: linear-gradient(90deg, transparent 0, #000 min(6rem, 8%), #000 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 min(6rem, 8%), #000 92%, transparent 100%);
   }
-  .testimonial-row { overflow: hidden; }
   .testimonial-row__track {
     display: flex;
     width: max-content;
     gap: var(--space-md);
     animation: testimonial-scroll 68s linear infinite;
   }
-  .testimonials-marquee:hover .testimonial-row__track { animation-play-state: paused; }
+  .testimonials-marquee:hover .testimonial-row__track,
+  .testimonial-row__track.is-paused { animation-play-state: paused; }
   @keyframes testimonial-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }

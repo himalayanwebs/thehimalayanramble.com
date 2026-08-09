@@ -16,7 +16,18 @@ export function useScrollHeader(suspend: boolean) {
   const lastY = useRef(0);
   const ticking = useRef(false);
   const suspendRef = useRef(suspend);
-  suspendRef.current = suspend;
+  const [prevSuspend, setPrevSuspend] = useState(suspend);
+
+  // Reset `hidden` the moment `suspend` turns on, without a setState-in-effect
+  // round trip — the "adjust state when a prop changes" render-time pattern.
+  if (suspend !== prevSuspend) {
+    setPrevSuspend(suspend);
+    if (suspend) setHidden(false);
+  }
+
+  useEffect(() => {
+    suspendRef.current = suspend;
+  }, [suspend]);
 
   useEffect(() => {
     function update() {
@@ -47,10 +58,6 @@ export function useScrollHeader(suspend: boolean) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    if (suspend) setHidden(false);
-  }, [suspend]);
 
   return { scrolled, hidden };
 }

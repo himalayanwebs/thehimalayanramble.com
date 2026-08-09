@@ -1,7 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Topography } from "./topography";
+
+function subscribeReducedMotion(onChange: () => void) {
+  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+// Matches the pre-hydration default: assume reduced motion until the real
+// client preference is known, so SSR/static HTML never bakes in the canvas.
+function getReducedMotionServerSnapshot() {
+  return true;
+}
 
 // Brand-tuned config, carried over from the hand-ported vanilla-WebGL version
 // used before this rebuild (glacier navy rising to sunrise orange at "peak
@@ -25,17 +41,13 @@ const BRAND_CONFIG = {
 // reactbits' Topography has no built-in prefers-reduced-motion handling —
 // PRODUCT.md bans motion-gated content, so this gate is required, not optional.
 export function TopographyBackground() {
-  const [motionOk, setMotionOk] = useState(false);
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setMotionOk(!query.matches);
-    const onChange = () => setMotionOk(!query.matches);
-    query.addEventListener("change", onChange);
-    return () => query.removeEventListener("change", onChange);
-  }, []);
-
-  if (!motionOk) return null;
+  if (reducedMotion) return null;
 
   return <Topography {...BRAND_CONFIG} className="absolute inset-0" />;
 }

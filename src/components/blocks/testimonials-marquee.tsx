@@ -1,4 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { Pause, Play } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { GOOGLE_TESTIMONIALS, type Testimonial } from "@/data/testimonials";
 
 export function Stars({ rating, className }: { rating: number; className?: string }) {
@@ -49,11 +54,23 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 export function TestimonialsMarquee() {
+  const [paused, setPaused] = useState(false);
   const loop = [...GOOGLE_TESTIMONIALS, ...GOOGLE_TESTIMONIALS];
   return (
     <div className="testimonials-marquee">
+      <div className="container">
+        <button
+          type="button"
+          className="testimonials-marquee__toggle"
+          aria-pressed={paused}
+          onClick={() => setPaused((p) => !p)}
+        >
+          {paused ? <Play className="size-3.5" aria-hidden="true" /> : <Pause className="size-3.5" aria-hidden="true" />}
+          {paused ? "Play reviews" : "Pause reviews"}
+        </button>
+      </div>
       <div className="testimonial-row">
-        <div className="testimonial-row__track">
+        <div className={cn("testimonial-row__track", paused && "is-paused")}>
           {loop.map((t, i) => (
             <TestimonialCard key={`${t.name}-${i}`} t={t} />
           ))}

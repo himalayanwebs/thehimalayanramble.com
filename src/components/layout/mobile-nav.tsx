@@ -44,7 +44,7 @@ export function MobileNav({ onOpenChange }: { onOpenChange?: (open: boolean) => 
       <Button
         variant="ghost"
         size="icon"
-        className="nav:hidden"
+        className="nav:hidden size-11"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
