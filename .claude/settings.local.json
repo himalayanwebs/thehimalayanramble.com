@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "PowerShell(npx shadcn@latest mcp init --client claude)",
-      "Bash(claude mcp *)"
+      "Bash(claude mcp *)",
+      "Bash(node C:/Users/shiml/AppData/Local/Temp/claude/d--anshulsimla-Visual-Code-thehimalayanramble-com/821d6bd0-e3f8-4556-889c-555389709c7c/scratchpad/build_artifact.js)"
     ]
   }
 }

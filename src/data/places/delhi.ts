@@ -163,7 +163,7 @@ export const delhiPlaces: PlaceData[] = [
         kind: "prose",
         tight: true,
         heading: "The tomb that came before the Taj.",
-        media: { src: "/graphics/delhi/pexels-sanzu-tamu-76905255-31743449.jpg", alt: "Humayun's Tomb gardens" },
+        media: { src: "/graphics/delhi/pexels-pranavsinh232-12757212.jpg", alt: "Humayun's Tomb gardens" },
         body: [
           "Built in 1570 for the Mughal emperor Humayun, this tomb was the first grand garden-tomb of its kind in India, and its Persian-style charbagh layout — symmetrical quadrants of garden around a central structure — directly influenced the design of the Taj Mahal decades later. It sits quietly in South Delhi, far less crowded than the city's better-known sights.",
           "The scale and calm of the gardens make it one of the more genuinely peaceful stops in the city, especially compared to the density of Old Delhi.",

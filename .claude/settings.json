@@ -13,7 +13,15 @@
       "Bash(git ls-tree *)",
       "Bash(git check-ignore *)",
       "Bash(git restore *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(start \"\" \"http://localhost:3000\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/himachal-pradesh/)",
+      "Bash(curl -s http://localhost:3000/globals.css)",
+      "Bash(curl -s http://localhost:3000/himachal-pradesh/ -o /tmp_page.html)",
+      "Bash(grep -o 'hero__breadcrumb' /tmp_page.html)",
+      "Bash(curl -s http://localhost:3000/himachal-pradesh/ -o C:/Users/shiml/AppData/Local/Temp/claude/d--anshulsimla-Visual-Code-thehimalayanramble-com/821d6bd0-e3f8-4556-889c-555389709c7c/scratchpad/page.html)",
+      "Bash(curl -s http://localhost:3000/_next/static/css/app/layout.css -o C:/Users/shiml/AppData/Local/Temp/claude/d--anshulsimla-Visual-Code-thehimalayanramble-com/821d6bd0-e3f8-4556-889c-555389709c7c/scratchpad/layout.css)",
+      "Bash(curl -s http://localhost:3000/_next/static/css/app/layout.css -o C:/Users/shiml/AppData/Local/Temp/claude/d--anshulsimla-Visual-Code-thehimalayanramble-com/821d6bd0-e3f8-4556-889c-555389709c7c/scratchpad/layout2.css)"
     ]
   }
 }

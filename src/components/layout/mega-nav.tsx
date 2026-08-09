@@ -12,6 +12,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { NAV_REGIONS } from "@/data/nav";
+import { NavLink } from "@/components/layout/nav-link";
 import { cn } from "@/lib/utils";
 
 function RegionColumn({
@@ -84,18 +85,20 @@ export function MegaNav() {
     <NavigationMenu viewport={false} className="max-w-none">
       <NavigationMenuList className="gap-8">
         <NavigationMenuItem>
-          <Link href="/" className="nav-link">
+          <NavLink href="/" className="nav-link">
             Home
-          </Link>
+          </NavLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem onFocus={() => setOpenRegion((r) => r ?? NAV_REGIONS[0].slug)}>
-          <NavigationMenuPrimitive.Trigger className="nav-link group">
-            Destinations
-            <ChevronDown
-              className="size-[9px] transition-transform duration-160 group-data-[state=open]:rotate-180"
-              aria-hidden="true"
-            />
+          <NavigationMenuPrimitive.Trigger asChild>
+            <Link href="/blog/" className="nav-link group">
+              Destinations
+              <ChevronDown
+                className="size-[9px] transition-transform duration-160 group-data-[state=open]:rotate-180"
+                aria-hidden="true"
+              />
+            </Link>
           </NavigationMenuPrimitive.Trigger>
           <NavigationMenuContent className="border-rule! shadow-[0_24px_48px_-16px_rgba(0,0,0,0.22)]!">
             <ul className="grid grid-cols-4 gap-x-6 gap-y-4 p-2 md:w-[52rem]">
@@ -113,14 +116,14 @@ export function MegaNav() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/contact/" className="nav-link">
+          <NavLink href="/contact/" className="nav-link">
             Contact Us
-          </Link>
+          </NavLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/terms/" className="nav-link">
+          <NavLink href="/terms/" className="nav-link">
             Terms &amp; Conditions
-          </Link>
+          </NavLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

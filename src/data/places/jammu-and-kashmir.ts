@@ -116,7 +116,7 @@ export const jammuAndKashmirPlaces: PlaceData[] = [
         kind: "prose",
         tight: true,
         heading: "Meadows the camera crews found first.",
-        media: { src: "/graphics/jammu-and-kashmir/pexels-imadclicks-30189869.jpg", alt: "Lidder River, Pahalgam" },
+        media: { src: "/graphics/jammu-and-kashmir/pexels-imushahid-14177070.jpg", alt: "Lidder River, Pahalgam" },
         body: [
           "Pahalgam sits on the Lidder River, ringed by pine forest and open meadow — Betaab Valley and Aru Valley, both nearby, have been backdrops in enough Bollywood films that the names stuck. But Pahalgam's bigger role is as the traditional base for the Amarnath Yatra, the Hindu pilgrimage to a sacred ice formation deep in the mountains, with Chandanwari as the usual starting point for the trek.",
           "Outside pilgrimage season, it's simply one of Kashmir's most photogenic valleys — river walks, pony rides, and quiet.",
@@ -153,7 +153,7 @@ export const jammuAndKashmirPlaces: PlaceData[] = [
         'Sonmarg travel guide and customized trips from The Himalayan Ramble — the "Meadow of Gold," and the gateway to Ladakh over the Zoji La.',
     },
     hero: {
-      image: { src: "/graphics/jammu-and-kashmir/pexels-imadclicks-30189869.jpg", alt: "Sonmarg" },
+      image: { src: "/graphics/jammu-and-kashmir/pexels-rubaitulazad-35027239.jpg", alt: "Sonmarg" },
       lede: '~2,800m · the "Meadow of Gold," and the gateway to Ladakh over the Zoji La.',
       ctaLabel: "Plan Your Sonmarg Trip",
     },
@@ -172,7 +172,7 @@ export const jammuAndKashmirPlaces: PlaceData[] = [
         kind: "list",
         reverse: true,
         heading: "A glacier by pony, lakes by trekking boot.",
-        media: { src: "/graphics/jammu-and-kashmir/pexels-tauseefkhaliq-12750077.jpg", alt: "Sonmarg alpine lakes" },
+        media: { src: "/graphics/jammu-and-kashmir/pexels-shahfaizanfilms-30092084.jpg", alt: "Snow-capped peaks near Sonmarg" },
         items: [
           { title: "Thajiwas Glacier", body: "A short pony ride or walk from Sonmarg — snow underfoot even in the height of summer." },
           { title: "Vishansar & Krishansar Lakes", body: "Twin alpine lakes reached on multi-day treks from Sonmarg." },

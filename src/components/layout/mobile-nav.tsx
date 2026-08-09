@@ -16,6 +16,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { NAV_REGIONS, CONTACT } from "@/data/nav";
+import { NavLink } from "@/components/layout/nav-link";
 
 export function MobileNav({ onOpenChange }: { onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(false);
@@ -53,9 +54,9 @@ export function MobileNav({ onOpenChange }: { onOpenChange?: (open: boolean) => 
       <SheetContent side="right" className="flex w-[85vw] flex-col gap-0 border-rule bg-paper p-0 sm:max-w-sm">
         <SheetTitle className="sr-only">Site navigation</SheetTitle>
         <nav aria-label="Mobile" className="flex flex-1 flex-col overflow-y-auto p-4">
-          <Link href="/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
+          <NavLink href="/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
             Home
-          </Link>
+          </NavLink>
 
           <Accordion type="single" collapsible>
             <AccordionItem value="destinations" className="border-rule">
@@ -101,15 +102,15 @@ export function MobileNav({ onOpenChange }: { onOpenChange?: (open: boolean) => 
             </AccordionItem>
           </Accordion>
 
-          <Link href="/blog/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
+          <NavLink href="/blog/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
             Blog
-          </Link>
-          <Link href="/contact/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
+          </NavLink>
+          <NavLink href="/contact/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
             Contact Us
-          </Link>
-          <Link href="/terms/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
+          </NavLink>
+          <NavLink href="/terms/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
             Terms &amp; Conditions
-          </Link>
+          </NavLink>
         </nav>
 
         <div className="flex flex-col gap-3 border-t border-rule p-4">

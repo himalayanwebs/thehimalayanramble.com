@@ -155,7 +155,7 @@ export const uttarakhandPlaces: PlaceData[] = [
         "Dehradun travel guide and customized trips from The Himalayan Ramble — the capital of Uttarakhand, and the valley gateway most Uttarakhand trips pass through.",
     },
     hero: {
-      image: { src: "/graphics/uttarakhand/pexels-dainiktales-27178287.jpg", alt: "Dehradun" },
+      image: { src: "/graphics/uttarakhand/pexels-sarimashrafi-35425311.jpg", alt: "Forest Research Institute, Dehradun" },
       lede: "The capital of Uttarakhand, and the valley gateway most Uttarakhand trips pass through.",
       ctaLabel: "Plan Your Dehradun Trip",
     },
@@ -168,6 +168,18 @@ export const uttarakhandPlaces: PlaceData[] = [
         body: [
           "Dehradun sits in a wide valley between the Shivalik hills and the higher Himalaya, and functions mainly as the state's transport hub — nearly every trip to Mussoorie, Rishikesh, or the wider Char Dham circuit passes through here first. It's worth a stop in its own right, though: a genuine institutional and colonial-era history, and a handful of easy day-trip sights.",
           "We usually build in a night here at the start or end of a longer Uttarakhand route, rather than as a standalone base.",
+        ],
+      },
+      {
+        kind: "list",
+        reverse: true,
+        heading: "Beyond the transit stop.",
+        media: { src: "/graphics/uttarakhand/pexels-lenswitzraj-21623982.jpg", alt: "Robber's Cave, Dehradun" },
+        items: [
+          { title: "Mindrolling Monastery", body: "One of the largest Buddhist monasteries outside Tibet, with a towering golden stupa." },
+          { title: "Tapkeshwar Temple", body: "A cave temple built around a natural Shiva lingam, fed by dripping water year-round." },
+          { title: "Paltan Bazaar", body: "The city's central market, good for a walk between transit connections." },
+          { title: "Clock Tower (Ghanta Ghar)", body: "The six-faced clock tower marking the middle of the old city." },
         ],
       },
     ],

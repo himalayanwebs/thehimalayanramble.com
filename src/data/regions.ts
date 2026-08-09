@@ -127,7 +127,7 @@ export const REGIONS: RegionData[] = [
         name: "Zanskar",
         meta: "Remote",
         hook: "Class III–V rafting in summer, the frozen-river Chadar trek in winter.",
-        image: { src: "/graphics/ladakh/pexels-rakesh-kumar-307953123-13680878.jpg", alt: "Zanskar, Ladakh" },
+        image: { src: "/graphics/ladakh/pexels-vikashkr50-18646446.jpg", alt: "Zanskar, Ladakh" },
       },
       {
         slug: "kargil",
@@ -267,7 +267,7 @@ export const REGIONS: RegionData[] = [
         name: "Dehradun",
         meta: "State capital",
         hook: "The valley gateway to most of Uttarakhand's hill stations.",
-        image: { src: "/graphics/uttarakhand/pexels-dainiktales-27178287.jpg", alt: "Dehradun" },
+        image: { src: "/graphics/uttarakhand/pexels-sarimashrafi-35425311.jpg", alt: "Forest Research Institute, Dehradun" },
       },
       {
         slug: "auli",
@@ -337,7 +337,7 @@ export const REGIONS: RegionData[] = [
         name: "Yumthang Valley",
         meta: "~3,564m",
         hook: "Sikkim's Valley of Flowers, and hot springs.",
-        image: { src: "/graphics/sikkim/manav-agarwal-GsnxDrXDLbc-unsplash.jpg", alt: "Yumthang Valley" },
+        image: { src: "/graphics/sikkim/pexels-ankan-sarkar-724231363-18341599.jpg", alt: "Yumthang Valley" },
       },
       {
         slug: "nathula",

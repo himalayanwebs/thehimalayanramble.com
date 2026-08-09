@@ -153,7 +153,7 @@ export const sikkimPlaces: PlaceData[] = [
         'Yumthang Valley travel guide from The Himalayan Ramble — Sikkim\'s "Valley of Flowers," a rhododendron sanctuary with hot springs.',
     },
     hero: {
-      image: { src: "/graphics/sikkim/manav-agarwal-GsnxDrXDLbc-unsplash.jpg", alt: "Yumthang Valley" },
+      image: { src: "/graphics/sikkim/pexels-ankan-sarkar-724231363-18341599.jpg", alt: "Yumthang Valley" },
       lede: '~3,564m · Sikkim\'s "Valley of Flowers" — a rhododendron sanctuary with hot springs and a road that keeps climbing toward Tibet.',
       ctaLabel: "Plan Your Yumthang Trip",
     },
@@ -166,6 +166,18 @@ export const sikkimPlaces: PlaceData[] = [
         body: [
           "Yumthang is a designated rhododendron sanctuary, and when the flowers peak — usually March through April — the valley floor turns into a wide sweep of colour against snow-streaked peaks. Even outside bloom season, the valley's hot springs and the sheer scale of the landscape make it worth the drive from Lachung.",
           "For travelers with the right permits, the road continues to Zero Point, near 4,600m — snow-capped even in summer, and close enough to Tibet to feel it.",
+        ],
+      },
+      {
+        kind: "list",
+        reverse: true,
+        heading: "A day trip, from base town to the snow line.",
+        media: { src: "/graphics/sikkim/pexels-vishwajeetraj11-35040513.jpg", alt: "Yumthang river valley, Sikkim" },
+        items: [
+          { title: "Lachung", body: "The base town every Yumthang day trip starts and ends from." },
+          { title: "Shingba Rhododendron Sanctuary", body: "The valley's protected core, home to dozens of rhododendron species." },
+          { title: "Yumthang River", body: "The glacial-fed river running the length of the valley floor." },
+          { title: "Yumesamdong (Zero Point)", body: "The road's permit-controlled end point, snow-covered most of the year." },
         ],
       },
     ],
@@ -202,6 +214,21 @@ export const sikkimPlaces: PlaceData[] = [
         body: [
           "Nathula was once a working point on the old Silk Route between India and Tibet, and today it's one of the few India–China border crossings tourists can actually visit, permit in hand. It's less about scenery than the fact of being there — a genuine international boundary at over 4,300m, with Indian and Chinese army posts facing each other across it.",
           "Most visits combine Nathula with Tsomgo Lake and the Baba Mandir shrine as a single, permit-controlled day trip from Gangtok.",
+        ],
+      },
+      {
+        kind: "list",
+        reverse: true,
+        heading: "The road up is most of the day trip.",
+        media: {
+          src: "/graphics/sikkim/pexels-nihar-manyalli-2158081835-37950971.jpg",
+          alt: "Tsomgo (Changu) Lake, en route to Nathula",
+        },
+        items: [
+          { title: "Tsomgo (Changu) Lake", body: "A glacial lake roughly halfway up, usually the first stop of the day." },
+          { title: "Old Silk Route", body: "The same corridor traders once used between India and Tibet, now a permit-controlled road." },
+          { title: "Kupup (Elephant Lake)", body: "A small lake further along the route, named for its footprint-like shape." },
+          { title: "Thegu", body: "The last village before the final climb to the pass itself." },
         ],
       },
     ],

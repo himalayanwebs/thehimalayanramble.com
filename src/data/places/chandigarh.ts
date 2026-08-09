@@ -51,7 +51,7 @@ export const chandigarhPlaces: PlaceData[] = [
         "Rock Garden travel guide from The Himalayan Ramble — a sculpture garden built secretly from industrial waste starting in 1957, now one of Chandigarh's most-visited sights.",
     },
     hero: {
-      image: { src: "/graphics/chandigarh/pexels-cphuyal-33251763.jpg", alt: "Rock Garden, Chandigarh" },
+      image: { src: "/graphics/chandigarh/pexels-ayush-sinha-855671783-33861670.jpg", alt: "Rock Garden, Chandigarh" },
       lede: "A sculpture garden built secretly from industrial waste, starting in 1957 — now one of Chandigarh's most-visited sights.",
       ctaLabel: CTA_LABEL,
     },
@@ -86,7 +86,7 @@ export const chandigarhPlaces: PlaceData[] = [
         "Sukhna Lake travel guide from The Himalayan Ramble — a man-made lake created in 1958, and the centrepiece of Le Corbusier's original city design.",
     },
     hero: {
-      image: { src: "/graphics/chandigarh/pexels-mhtoori-1686440.jpg", alt: "Sukhna Lake, Chandigarh" },
+      image: { src: "/graphics/chandigarh/pexels-ananya-mandial-931631-31103717.jpg", alt: "Sukhna Lake, Chandigarh" },
       lede: "A man-made lake created in 1958, and the centrepiece of Le Corbusier's original city design.",
       ctaLabel: CTA_LABEL,
     },
@@ -121,7 +121,7 @@ export const chandigarhPlaces: PlaceData[] = [
         "Rose Garden travel guide from The Himalayan Ramble — the Zakir Hussain Rose Garden, one of Asia's largest, with over 1,600 rose varieties.",
     },
     hero: {
-      image: { src: "/graphics/chandigarh/pexels-mt-akhtar-537668590-32562287.jpg", alt: "Rose Garden, Chandigarh" },
+      image: { src: "/graphics/chandigarh/pexels-natalia-sevruk-636238602-38141698.jpg", alt: "Rose Garden, Chandigarh" },
       lede: "The Zakir Hussain Rose Garden — one of Asia's largest, with over 1,600 rose varieties.",
       ctaLabel: CTA_LABEL,
     },
@@ -156,7 +156,7 @@ export const chandigarhPlaces: PlaceData[] = [
         "Capitol Complex travel guide from The Himalayan Ramble — a UNESCO World Heritage Site, Le Corbusier's government complex, and the city's architectural centrepiece.",
     },
     hero: {
-      image: { src: "/graphics/chandigarh/pexels-nikhil-manan-1536524-28905565.jpg", alt: "Capitol Complex, Chandigarh" },
+      image: { src: "/graphics/chandigarh/pexels-mecvisuals-4056400.jpg", alt: "Capitol Complex, Chandigarh" },
       lede: "A UNESCO World Heritage Site — Le Corbusier's government complex, and the city's architectural centrepiece.",
       ctaLabel: CTA_LABEL,
     },

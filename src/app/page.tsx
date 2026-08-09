@@ -9,6 +9,7 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { Reveal } from "@/components/blocks/reveal";
 import { StampMark } from "@/components/home/stamp-mark";
 import { SignatureRoutes } from "@/components/home/route-list";
+import { TestimonialsMarquee, Stars } from "@/components/blocks/testimonials-marquee";
 import { TopographyBackground } from "@/components/effects/topography-background";
 import { CONTACT } from "@/data/nav";
 import {
@@ -43,8 +44,8 @@ export default function Home() {
         eyebrow={HOME_HERO.eyebrow}
         title={
           <span className="misregister">
-            Stay and travel to the only place that feels like{" "}
-            <span className="text-brand-accent">heaven</span> on earth.
+            We know which pass is closed{" "}
+            <span className="text-brand-accent">before</span> you ask.
           </span>
         }
         lede={HOME_HERO.lede}
@@ -90,6 +91,29 @@ export default function Home() {
             <SignatureRoutes routes={HOME_SIGNATURE_ROUTES} />
           </div>
         </div>
+      </section>
+
+      <section className="section" id="reviews">
+        <div className="container">
+          <Reveal className="max-w-[60ch]">
+            <h2 className="h2">What travelers say, straight from Google.</h2>
+            <div className="testimonials-source">
+              <div className="testimonials-source__rating">
+                <span className="testimonials-source__score">5.0</span>
+                <Stars rating={5} className="testimonials-source__stars" />
+              </div>
+              <a
+                href="https://share.google/9D0WT2HgiJPNx5L6Z"
+                target="_blank"
+                rel="noopener"
+                className="link-accent"
+              >
+                Read all reviews on Google &rarr;
+              </a>
+            </div>
+          </Reveal>
+        </div>
+        <TestimonialsMarquee />
       </section>
 
       <CtaBand

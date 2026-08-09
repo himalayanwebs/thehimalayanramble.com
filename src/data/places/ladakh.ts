@@ -152,7 +152,7 @@ export const ladakhPlaces: PlaceData[] = [
         "Zanskar travel guide and customized trips from The Himalayan Ramble — remote and historically isolated, with Class III–V rafting in summer and the frozen-river Chadar trek every winter.",
     },
     hero: {
-      image: { src: "/graphics/ladakh/pexels-rakesh-kumar-307953123-13680878.jpg", alt: "Zanskar, Ladakh" },
+      image: { src: "/graphics/ladakh/pexels-vikashkr50-18646446.jpg", alt: "Zanskar, Ladakh" },
       lede: "Remote and historically isolated — Class III–V rafting in summer, and the frozen-river Chadar trek every winter.",
       ctaLabel: "Plan Your Zanskar Trip",
     },
@@ -165,6 +165,18 @@ export const ladakhPlaces: PlaceData[] = [
         body: [
           "Zanskar sits south of the main Ladakh range, cut off from the rest of the region for much of the year — which is exactly what's kept it so distinct. In summer, the Zanskar River offers some of the most serious whitewater rafting in India, Class III to V depending on the stretch. In winter, when the river freezes solid, it becomes the route for the Chadar trek — walking on the ice itself, past villages that have no other way out until spring.",
           "Padum is the region's main town and usual base, with Karsha and Phuktal monasteries among the more remarkable stops nearby.",
+        ],
+      },
+      {
+        kind: "list",
+        reverse: true,
+        heading: "Monasteries that outlasted the isolation.",
+        media: { src: "/graphics/ladakh/pexels-harsh-kukadiya-244412142-37835725.jpg", alt: "Phuktal Monastery, Zanskar" },
+        items: [
+          { title: "Phuktal Monastery", body: "Built directly into a cliff cave, reachable only on foot — no road has ever gone there." },
+          { title: "Karsha Monastery", body: "Zanskar's largest monastery, stacked up a hillside above Padum." },
+          { title: "Padum", body: "The region's main town and usual base, with the valley's basic supplies and transport links." },
+          { title: "Zangla", body: "Site of Zanskar's old royal palace, once the seat of a small Himalayan kingdom." },
         ],
       },
       {
