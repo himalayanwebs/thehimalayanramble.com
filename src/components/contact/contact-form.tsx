@@ -29,9 +29,8 @@ import {
   type ContactValues,
 } from "@/lib/validation/contact";
 import { DESTINATION_GROUPS, DESTINATION_NOT_SURE } from "@/data/contact-destinations";
+import { CONTACT } from "@/data/nav";
 import { ContactSuccess } from "./contact-success";
-
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 const ALL_DESTINATION_VALUES = [
   ...DESTINATION_GROUPS.flatMap((group) => group.options),
@@ -64,32 +63,20 @@ export function ContactForm() {
   async function onSubmit(values: ContactValues) {
     setSubmitError(null);
 
-    if (!WEB3FORMS_ACCESS_KEY) {
-      if (process.env.NODE_ENV !== "production") {
-        console.warn(
-          "NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not set (see .env.local.example) — enquiry was not sent."
-        );
-      }
-      setSubmitError(
-        "This form isn't connected yet — please call or WhatsApp us directly using the details alongside."
-      );
-      return;
-    }
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT.email}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New trip enquiry from ${values.name}`,
-          from_name: "The Himalayan Ramble — Contact Form",
+          _subject: `New trip enquiry from ${values.name}`,
+          _template: "table",
+          _captcha: "false",
           ...values,
         }),
       });
       const json = await res.json();
-      if (!res.ok || json.success === false) {
-        throw new Error(json.message || `Web3Forms responded ${res.status}`);
+      if (!res.ok || json.success === false || json.success === "false") {
+        throw new Error(json.message || `FormSubmit responded ${res.status}`);
       }
       setSubmitted(true);
     } catch {
