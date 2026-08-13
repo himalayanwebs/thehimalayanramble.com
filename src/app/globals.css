@@ -688,15 +688,20 @@
      page). Only hidden-then-revealed once .js confirms script executed —
      see the inline head script in layout.tsx that sets this synchronously,
      before first paint. */
-  [data-reveal] { opacity: 1; transform: none; }
+  /* Opacity-only: a transform component here (e.g. translateY) moves the
+     element's rendered rect, which the browser's Layout Instability API
+     counts as a layout shift the instant .js/.is-visible toggle — even
+     though nothing in the document flow actually reflows. Trust strip and
+     founder-block reveals sit in the initial viewport, so this was a real,
+     measured CLS contributor. Opacity has no geometry, so it's free. */
+  [data-reveal] { opacity: 1; }
   .js [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity var(--dur-slow) var(--ease-out-quart), transform var(--dur-slow) var(--ease-out-quart);
+    transition: opacity var(--dur-slow) var(--ease-out-quart);
   }
-  .js [data-reveal].is-visible { opacity: 1; transform: none; }
+  .js [data-reveal].is-visible { opacity: 1; }
   @media (prefers-reduced-motion: reduce) {
-    .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+    .js [data-reveal] { opacity: 1; transition: none; }
   }
 }
 

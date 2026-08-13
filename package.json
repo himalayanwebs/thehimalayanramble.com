@@ -40,5 +40,12 @@
   },
   "overrides": {
     "brace-expansion": "^5.0.8"
-  }
+  },
+  "browserslist": [
+    "chrome >= 91",
+    "edge >= 91",
+    "firefox >= 90",
+    "safari >= 15",
+    "ios_saf >= 15"
+  ]
 }

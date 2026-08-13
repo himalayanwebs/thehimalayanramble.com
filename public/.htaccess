@@ -18,3 +18,57 @@ RewriteRule ^([^/]+)\.html$ /$1/ [R=301,L]
 
 # /{region}/{place}.html -> /{region}/{place}/
 RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
+
+# --- Compression ---
+# PageSpeed "reduce network payload" — mod_deflate is available on Hostinger's
+# standard Apache/LiteSpeed shared hosting; harmless no-op if the module isn't
+# loaded on a given host.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf application/vnd.ms-fontobject
+</IfModule>
+
+# --- Cache lifetimes ---
+# PageSpeed "Use efficient cache lifetimes" — this is a static export with no
+# app server, so cache headers can only be set here, at the host. Next.js
+# content-hashes everything under /_next/static/ (filename changes on every
+# rebuild), so it's safe to cache for a year as immutable. Photos under
+# /graphics/ and /assets/ keep their filenames across rebuilds, so they get a
+# long-but-not-forever cache instead — long enough to matter for PageSpeed,
+# short enough that replacing a file under the same name still refreshes
+# within a month. HTML documents stay revalidate-on-every-visit so a redeploy
+# is never stuck behind a stale cached page.
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  ExpiresByType text/html "access plus 0 seconds"
+
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# /_next/static/ is content-hashed by Next.js — every deploy gets new
+# filenames, so caching these for a year as immutable is always safe.
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

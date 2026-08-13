@@ -1,7 +1,14 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { Topography } from "./topography";
+import dynamic from "next/dynamic";
+
+// ogl (WebGL) only ever paints inside the final CTA band, far below the
+// fold — dynamic + ssr:false keeps its bundle out of the homepage's initial
+// JS entirely, only fetching it once a client actually needs to render it.
+const Topography = dynamic(() => import("./topography").then((m) => m.Topography), {
+  ssr: false,
+});
 
 function subscribeReducedMotion(onChange: () => void) {
   const query = window.matchMedia("(prefers-reduced-motion: reduce)");

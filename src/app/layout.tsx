@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { JsFlag } from "@/components/js-flag";
 import "./globals.css";
+
+const FONTSHARE_HREF =
+  "https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet-grotesk@800,900,700,500,400,1&f[]=general-sans@400,500,600,1&display=swap";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -28,16 +30,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jetbrainsMono.variable}>
+    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet-grotesk@800,900,700,500,400,1&f[]=general-sans@400,500,600,1&display=swap"
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        {/* Non-render-blocking stylesheet load: media="print" (browsers still
+            fetch print-media sheets, just don't block first paint on them)
+            swaps to "all" once loaded via the inline script below. React
+            auto-hoists a preload for this <link> on its own, so no manual
+            one is needed. Fixes the render-blocking request / network-
+            dependency-chain PageSpeed findings without changing when fonts
+            visually swap in (display=swap already governs that, unchanged). */}
+        <link id="fontshare-css" rel="stylesheet" href={FONTSHARE_HREF} media="print" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(l){if(!l)return;var s=function(){l.media='all';l.removeEventListener('load',s);};l.addEventListener('load',s);})(document.getElementById('fontshare-css'));",
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href={FONTSHARE_HREF} />
+        </noscript>
+        {/* Synchronous, pre-hydration flag for the [data-reveal] CSS gate in
+            globals.css. Must run before first paint (not in a "use client"
+            useEffect, which fires after paint/hydration) — otherwise
+            above-the-fold reveal content (trust strip, founder block) paints
+            visible, then immediately snaps hidden once JS catches up, which
+            both flickers and registers as a layout shift. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
         />
       </head>
       <body>
-        <JsFlag />
         <a className="skip-link" href="#main">
           Skip to content
         </a>
