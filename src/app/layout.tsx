@@ -32,6 +32,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
       <head>
+        {/* Google tag (gtag.js) — Google Analytics 4, property G-0MF9NZ26EP.
+            Placed first in <head> per Google's install instructions. Raw
+            tags (not next/script) to match the other head scripts here and
+            keep the snippet identical to what the GA console provides; this
+            single root layout renders on every statically exported page. */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-0MF9NZ26EP"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-0MF9NZ26EP');",
+          }}
+        />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         {/* Non-render-blocking stylesheet load: media="print" (browsers still
