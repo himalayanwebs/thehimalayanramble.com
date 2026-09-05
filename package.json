@@ -51,4 +51,3 @@
     "ios_saf >= 15"
   ]
 }
-fix: patch fast-uri and qs vulnerabilities
