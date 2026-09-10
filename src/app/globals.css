@@ -705,6 +705,14 @@
   }
 }
 
+/* The partner portal is deliberately accessible only by its direct URL. Its own
+   utility header replaces the public marketing navigation and footer. */
+body:has(.partner-portal) > .site-header,
+body:has(.partner-portal) > .site-footer,
+body:has(.partner-portal) > .skip-link {
+  display: none;
+}
+
 @keyframes stamp-impact {
   0%   { opacity: 0; transform: scale(2.4) rotate(2deg); }
   55%  { opacity: 1; transform: scale(0.94) rotate(-9deg); }

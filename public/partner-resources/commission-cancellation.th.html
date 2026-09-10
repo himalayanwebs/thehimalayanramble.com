@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>นโยบายค่าคอมมิชชั่นและการยกเลิกสำหรับพาร์ทเนอร์ | The Himalayan Ramble</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700;800;900&display=swap');
+:root{--paper:#f2f0ea;--ink:#071426;--accent:#ef5b00;--muted:#69717b;--line:#172333;--soft:#e3e0d8}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:#171717;color:var(--ink);font-family:'DM Sans',Arial,sans-serif}.document{max-width:760px;margin:auto;background:var(--paper)}
+.page{min-height:100vh;padding:30px 24px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;border-bottom:1px solid #222}.page:before{content:"";position:absolute;right:-70px;top:36px;width:150px;height:78px;background-image:radial-gradient(#a6a49e 1px,transparent 1px);background-size:6px 6px;opacity:.55}.mast{font:600 9px/1.2 'Space Grotesk',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;border-bottom:2px solid var(--line);padding-bottom:10px;margin-bottom:32px}.kicker{font:700 10px/1.2 'Space Grotesk',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}.title{font:700 clamp(54px,14vw,112px)/.79 'Space Grotesk',sans-serif;letter-spacing:-.075em;text-transform:uppercase;margin:0 0 28px;max-width:720px}.title .orange{color:var(--accent)}.display{font:700 clamp(38px,10vw,82px)/.82 'Space Grotesk',sans-serif;letter-spacing:-.065em;text-transform:uppercase;margin:0 0 22px}.subhead{font:700 22px/1.02 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:-.025em}.lead{font-size:16px;line-height:1.45;max-width:660px}.body{font-size:14px;line-height:1.45}.small{font-size:11px;line-height:1.45;color:#454d56}.rule{height:2px;background:var(--line);margin:20px 0}.footer{margin-top:auto;padding-top:22px;border-top:2px solid var(--line);font:600 8px/1.2 'Space Grotesk',sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+.callout{background:var(--accent);color:#071426;padding:22px 20px;margin:18px 0 8px;position:relative}.callout:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:9px;background:var(--accent);clip-path:polygon(0 35%,4% 80%,8% 25%,12% 70%,17% 20%,22% 65%,28% 25%,34% 75%,41% 15%,48% 68%,55% 25%,62% 78%,69% 18%,76% 65%,84% 25%,91% 70%,100% 20%,100% 100%,0 100%)}.callout h2{font:700 28px/.9 'Space Grotesk',sans-serif;letter-spacing:-.04em;text-transform:uppercase;margin:0 0 12px}.callout p{margin:0;font-weight:600;line-height:1.4}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}.stat{border-top:1px solid #8d9298;padding-top:10px}.stat b{display:block;font:700 30px/.95 'Space Grotesk',sans-serif}.stat span{font:600 9px/1.2 'Space Grotesk',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.list{margin:0;padding:0;list-style:none}.list li{border-top:1px solid #a7a9a9;padding:11px 0 10px 22px;position:relative;font-size:13px;line-height:1.4}.list li:before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:var(--accent)}.tier{display:grid;grid-template-columns:1fr auto;border-top:1px solid #8d9298}.tier div{padding:10px 0;font:600 12px/1.1 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase}.tier strong{font:700 20px/1.1 'Space Grotesk',sans-serif;padding:7px 0}.note{border-left:4px solid var(--accent);padding:3px 0 3px 13px;margin:14px 0;font-size:12px;line-height:1.4}.big-number{font:700 clamp(58px,15vw,110px)/.8 'Space Grotesk',sans-serif;letter-spacing:-.08em}.steps{counter-reset:item;margin:0;padding:0;list-style:none}.steps li{counter-increment:item;display:grid;grid-template-columns:42px 1fr;gap:8px;border-top:1px solid #9b9d9e;padding:12px 0}.steps li:before{content:counter(item,decimal-leading-zero);font:700 17px/1 'Space Grotesk',sans-serif;color:var(--accent)}.steps b{font:700 14px/1.15 'Space Grotesk',sans-serif;text-transform:uppercase}.steps span{display:block;font-size:12px;line-height:1.35;margin-top:3px}.two-col{columns:2;column-gap:28px}.two-col li{break-inside:avoid}.contact{display:grid;grid-template-columns:110px 1fr;border-top:1px solid #999}.contact div{padding:10px 0;border-bottom:1px solid #999}.contact .label{font:600 9px/1.2 'Space Grotesk',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.contact .value{font-size:13px;font-weight:600}.quote{font:600 17px/1.25 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:-.02em;border-top:2px solid var(--line);border-bottom:2px solid var(--line);padding:16px 0;margin:16px 0}.warning{background:var(--ink);color:var(--paper);padding:18px}.warning b{color:var(--accent);font:700 13px/1 'Space Grotesk',sans-serif;text-transform:uppercase;display:block;margin-bottom:8px}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{text-align:left;border-top:1px solid #92969a;padding:10px 5px;vertical-align:top}.table th{font:600 9px/1.2 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:430px){.page{padding:23px 17px 22px}.mast{font-size:7px;margin-bottom:25px}.grid{grid-template-columns:1fr}.two-col{columns:1}.title{font-size:55px}.display{font-size:43px}.lead{font-size:14px}.body{font-size:13px}.callout h2{font-size:24px}.contact{grid-template-columns:82px 1fr}.contact .value{font-size:12px}}
+@media print{body{background:white}.document{max-width:none}.page{min-height:100vh;page-break-after:always}}
+</style>
+</head>
+<body>
+<main class="document">
+
+<section class="page">
+  <div class="mast"><span>The Himalayan Ramble / นโยบายพาร์ทเนอร์</span><span>01 / 09</span></div>
+  <div class="kicker">โปรแกรมพาร์ทเนอร์ท่องเที่ยวนานาชาติ</div>
+  <h1 class="title">พาร์ทเนอร์<br>ค่าคอมมิชชั่น<br>And<br><span class="orange">การยกเลิก.</span></h1>
+  <p class="lead">คู่มือพาร์ทเนอร์อธิบายวิธีการได้รับค่าคอมมิชชั่น เอกสารฉบับนี้อธิบายว่าจะเกิดอะไรขึ้นกับค่าคอมมิชชั่นเมื่อการจองมีการเปลี่ยนแปลง จำนวนผู้เดินทางลดลง หรือถูกยกเลิก โปรดอ่านเอกสารนี้ก่อนทำการจองครั้งแรก</p>
+  <div class="callout">
+    <h2>ค่าคอมมิชชั่นของพาร์ทเนอร์<br>จะจ่ายเมื่อถึง<br>จุดที่ไม่สามารถขอคืนเงินได้</h2>
+    <p>หนึ่งสัปดาห์ก่อนออกเดินทาง ซึ่งเป็นเวลาที่ต้องชำระยอดคงเหลือเต็มจำนวนและไม่สามารถขอคืนเงินได้อีก การจองไม่สามารถยกเลิกย้อนกลับได้แล้ว ดังนั้นค่าคอมมิชชั่นจึงถือว่ามั่นคง</p>
+  </div>
+  <div class="footer">โปรแกรมพาร์ทเนอร์ท่องเที่ยวนานาชาติ / ค่าคอมมิชชั่น &amp; การยกเลิก</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>Section 01 / 02</span><span>02 / 09</span></div>
+  <div class="kicker">ส่วนที่ 01 / ค่าคอมมิชชั่นคำนวณจากอะไร</div>
+  <h2 class="display">จ่ายจาก<br>จำนวนนักท่องเที่ยว</h2>
+  <ul class="list">
+    <li>จ่ายจาก <b>นักท่องเที่ยวที่ยืนยันแล้ว only</b>. ไม่จ่ายจากลีด การสอบถาม หรือใบเสนอราคา</li>
+    <li>นักท่องเที่ยวจะถือว่ายืนยันแล้วเมื่อได้รับเงินมัดจำและมีการออกเอกสารยืนยันเป็นลายลักษณ์อักษร</li>
+    <li>คำนวณจาก <b>มูลค่าการจองที่มีสิทธิ์</b>: มูลค่าแพ็กเกจที่ The Himalayan Ramble ได้รับ โดย The Himalayan Ramble, ไม่รวมภาษีและ GST รวมถึงค่าใช้จ่ายของบุคคลที่สามที่จองตามราคาต้นทุน</li>
+    <li>ค่าใช้จ่ายเพิ่มเติมที่ลูกค้าซื้อหน้างานไม่มีค่าคอมมิชชั่น</li>
+  </ul>
+  <div class="kicker" style="margin-top:24px">ส่วนที่ 02 / ระดับค่าคอมมิชชั่น</div>
+  <div class="tier"><div>นักท่องเที่ยว 5–9 คน</div><strong>2%</strong></div>
+  <div class="tier"><div>นักท่องเที่ยว 10–19 คน</div><strong>4%</strong></div>
+  <div class="tier"><div>นักท่องเที่ยว 20–29 คน</div><strong>6%</strong></div>
+  <div class="tier"><div>นักท่องเที่ยว 30–39 คน</div><strong>8%</strong></div>
+  <div class="tier"><div>นักท่องเที่ยว 40–49 คน</div><strong>10%</strong></div>
+  <div class="tier"><div>50 คนขึ้นไป</div><strong>12%</strong></div>
+  <p class="small">อัตราค่าคอมมิชชั่นเป็นอัตราคงที่ ระดับจะกำหนดจากจำนวนนักท่องเที่ยวที่ยืนยันแล้วทั้งหมดของคุณในแต่ละเดือนปฏิทิน ไม่ใช่จากจำนวนการจองแต่ละรายการ</p>
+  <div class="footer">นโยบายพาร์ทเนอร์ / What Is Paid, And At What Rate</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>Section 03 / 04 / 05</span><span>03 / 09</span></div>
+  <div class="kicker">ส่วนที่ 03 / การขยับขึ้นระดับ</div>
+  <h2 class="display">ขยับระดับขึ้น<br>รับค่าตอบแทนมากขึ้น</h2>
+  <ul class="list">
+    <li>หากคุณขึ้นสู่ระดับที่สูงขึ้นภายในเดือนเดียวกัน อัตราที่สูงกว่าจะนำไปใช้กับทั้งเดือน ค่าคอมมิชชั่นที่จ่ายไปแล้วในอัตราที่ต่ำกว่าจะถูกหักออก และจะจ่ายเฉพาะส่วนต่างที่เหลือ</li>
+    <li>ตัวอย่าง: นักท่องเที่ยว 10 คนได้รับการคำนวณที่ 4% จากนั้นมีเพิ่มอีก 10 คนในเดือนเดียวกัน รวมเป็น 20 คน ซึ่งอยู่ที่ระดับ 6% ดังนั้นนักท่องเที่ยวทั้ง 20 คนจะถูกคำนวณใหม่ที่ 6% และหักค่าคอมมิชชั่น 4% ที่จ่ายไปแล้ว</li>
+  </ul>
+  <div class="rule"></div>
+  <div class="kicker">ส่วนที่ 04 / ข้อกำหนดด้านผลงาน</div>
+  <div class="big-number">50+</div>
+  <div class="subhead">นักท่องเที่ยวที่ยืนยันแล้ว<br>ตลอดสามเดือน</div>
+  <p class="body">ไม่มี <b>จำนวนขั้นต่ำของนักท่องเที่ยวที่ยืนยันแล้วที่ต้องทำให้ได้ในแต่ละเดือนปฏิทินอีกต่อไป</b> ยกเลิกข้อกำหนดขั้นต่ำรายเดือนเดิมแล้ว ข้อกำหนดสามเดือนจะวัดจากตลอดช่วงเริ่มต้นที่เป็นค่าคอมมิชชั่น</p>
+  <p class="body">การนับเป็นจำนวนนักท่องเที่ยว ไม่ใช่จำนวนการจอง การจองสำหรับ 12 คนจะนับเป็นนักท่องเที่ยวที่ยืนยันแล้ว 12 คน</p>
+  <div class="note">การพิจารณาเข้าสู่ตำแหน่งงานเต็มเวลาจะขึ้นอยู่กับผลงานที่พิสูจน์ได้ ความสม่ำเสมอ และความสามารถในการสร้างการจองสำหรับทัวร์ในอนาคตด้วยประสิทธิภาพในระดับเดียวกัน</div>
+  <div class="kicker" style="margin-top:16px">ส่วนที่ 05 / การจ่ายค่าคอมมิชชั่น</div>
+  <ul class="list">
+    <li>จ่ายเมื่อการจองผ่าน <b>non-refundable point</b>, one week before departure. ไม่ต้องรอจนทัวร์เสร็จสิ้นจึงจะได้รับเงิน</li>
+    <li>คำนวณตามระดับของเดือนที่นักท่องเที่ยวเหล่านั้นได้รับการยืนยัน</li>
+    <li>ชำระเป็นรายเดือนตามใบสรุปที่ครอบคลุมทุกการจองที่ผ่านจุดไม่สามารถขอคืนเงินได้ภายในเดือนนั้น</li>
+    <li>หากไม่ได้รับยอดคงเหลือของลูกค้าครบถ้วน ค่าคอมมิชชั่นจะถูกพักไว้จนกว่าจะได้รับครบ</li>
+    <li>ค่าธรรมเนียมการโอนเงินผ่านธนาคารและค่าธรรมเนียมแปลงสกุลเงินเป็นความรับผิดชอบของพาร์ทเนอร์ เว้นแต่จะมีข้อตกลงเป็นลายลักษณ์อักษร</li>
+  </ul>
+  <div class="footer">นโยบายพาร์ทเนอร์ / Tiers, Performance &amp; Payout</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>ส่วนที่ 05 / การเติมเต็มสล็อต</span><span>04 / 09</span></div>
+  <div class="kicker">มาตรฐานผลงาน / ทัวร์ตามกำหนด</div>
+  <h2 class="display">เติมเต็ม<br>สล็อต</h2>
+  <p class="lead">ไม่มีจำนวนขั้นต่ำรายเดือนอีกต่อไป แต่ละวันออกเดินทางที่กำหนดไว้จะถือเป็นสล็อตทัวร์แยกกัน และหน้าที่ของพาร์ทเนอร์คือทำงานเพื่อเติมเต็มสล็อตที่มีอยู่ก่อนออกเดินทาง</p>
+  <div class="callout">
+    <h2>มาตรฐานปัจจุบันสำหรับมานาลี</h2>
+    <p style="font:700 30px/.95 'Space Grotesk',sans-serif">10–12+<br>นักท่องเที่ยวที่ยืนยันแล้ว<br>ต่อสล็อต</p>
+  </div>
+  <div class="grid" style="margin-top:24px">
+    <div class="stat"><b>30 DAYS</b><span>กำหนดเป้าหมายก่อนวันออกเดินทางของสล็อตนั้น</span></div>
+    <div class="stat"><b>PER SLOT</b><span>ประเมินแยกเป็นรายสล็อต ไม่ใช่โควต้ารายเดือน</span></div>
+  </div>
+  <div class="rule"></div>
+  <h3 class="subhead">อะไรจึงถือว่าเต็ม?</h3>
+  <p class="body">สล็อตถือว่าเต็มเมื่อมีนักท่องเที่ยวถึงขนาดกรุ๊ปที่กำหนดสำหรับผลิตภัณฑ์นั้น สำหรับ Manali Winter Circuit ปัจจุบันหมายถึงนักท่องเที่ยวที่ยืนยันแล้ว 10–12 คนขึ้นไป</p>
+  <p class="body"><b>ยืนยันแล้ว</b> หมายถึงนักท่องเที่ยวได้ดำเนินขั้นตอนการจองและชำระเงินตามที่กำหนดครบถ้วนจนการจองสามารถถือว่ายืนยันแล้ว ลีด การสอบถาม ใบเสนอราคา และความสนใจทั่วไปที่ยังไม่เป็นทางการไม่นับรวม</p>
+  <h3 class="subhead" style="margin-top:20px">เหตุใดจึงสำคัญ</h3>
+  <p class="body">การเติมเต็มสล็อตเป็นมาตรฐานด้านผลงานที่ The Himalayan Ramble ใช้ประเมินความสามารถของพาร์ทเนอร์ในการสร้างและเปลี่ยนโอกาสให้เป็นธุรกิจจริง ไม่ใช่บทลงโทษจากการยกเลิก และจะไม่ทำให้สล็อตถูกยกเลิก ลด หรือถอดออกโดยอัตโนมัติเมื่อไม่ถึงเป้าหมาย</p>
+  <p class="body">ใช้เป็นตัวชี้วัดผลงานสำหรับการดำเนินความร่วมมือต่อไปและการพิจารณาโอกาสในอนาคต</p>
+  <div class="warning"><b>ค่าคอมมิชชั่นเป็นคนละส่วน</b> มาตรฐานการเติมเต็มสล็อตไม่เปลี่ยนวิธีคำนวณค่าคอมมิชชั่นรายเดือน ค่าคอมมิชชั่นยังคงคำนวณจากจำนวนนักท่องเที่ยวที่ยืนยันแล้วทั้งหมดของพาร์ทเนอร์ในแต่ละเดือนปฏิทินและระดับค่าคอมมิชชั่นที่เกี่ยวข้อง</div>
+  <div class="footer">นโยบายพาร์ทเนอร์ / Slot เติมเต็มing Standard</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>ส่วนที่ 06 / เส้นทางสู่การทำงานเต็มเวลา</span><span>05 / 09</span></div>
+  <div class="kicker">ขั้นตอนถัดไป</div>
+  <h2 class="display">พิสูจน์ผลงาน<br>แล้วเติบโต<br>ไปกับเรา</h2>
+  <p class="lead">ช่วงเริ่มต้นสามเดือนเป็นช่วงทำงานแบบค่าคอมมิชชั่น ออกแบบมาเพื่อพิสูจน์ว่าพาร์ทเนอร์สามารถค้นหาลูกค้า สร้างกรุ๊ป เติมเต็มสล็อตทัวร์ และเปลี่ยนโอกาสให้เป็นนักท่องเที่ยวที่ยืนยันแล้วได้อย่างสม่ำเสมอ</p>
+  <div class="quote">นักท่องเที่ยวที่ยืนยันแล้วมากกว่า 50 คนตลอดระยะเวลาสามเดือน</div>
+  <h3 class="subhead">เพื่อให้ผ่านช่วงค่าคอมมิชชั่นได้สำเร็จ พาร์ทเนอร์ต้อง:</h3>
+  <ol class="steps">
+    <li><div><b>ทำงานเพื่อเติมเต็มสล็อต</b><span>ทำงานอย่างจริงจังเพื่อเติมเต็มสล็อตทัวร์ที่ได้รับมอบหมาย</span></div></li>
+    <li><div><b>นำลูกค้ามากกว่า 50 คน</b><span>สร้างนักท่องเที่ยวที่ยืนยันแล้วมากกว่า 50 คนตลอดสามเดือน โดยนับเป็นรายบุคคล</span></div></li>
+    <li><div><b>สร้างการจองจริง</b><span>เปลี่ยนลูกค้าและโอกาสจากกรุ๊ปจริงให้เป็นการจองที่ยืนยันแล้ว</span></div></li>
+    <li><div><b>สื่อสารอย่างมืออาชีพ</b><span>ติดตามผล สื่อสารกับลูกค้า และประสานงานอย่างมีประสิทธิภาพ</span></div></li>
+    <li><div><b>สร้างผลงานต่อเนื่อง</b><span>แสดงให้เห็นถึงความสามารถและความมุ่งมั่นในการสร้างการจองสำหรับทัวร์ในอนาคตด้วยความสม่ำเสมอและประสิทธิภาพในระดับเดียวกัน</span></div></li>
+  </ol>
+  <div class="callout">
+    <h2>โอกาสทำงานเต็มเวลา</h2>
+    <p>If the partner successfully demonstrates the required performance and can continue delivering results for future tours, The Himalayan Ramble may offer a <b>ตำแหน่งงานเต็มเวลาพร้อมเงินเดือน</b></p>
+  </div>
+  <p class="small">การครบระยะเวลาสามเดือนไม่ได้ทำให้เกิดตำแหน่งงานเต็มเวลาโดยอัตโนมัติ การเปลี่ยนผ่านขึ้นอยู่กับผลงาน ความสม่ำเสมอ การเติมเต็มสล็อต นักท่องเที่ยวที่ยืนยันแล้วมากกว่า 50 คน ความสามารถในการทำผลงานต่อเนื่อง และข้อตกลงร่วมกัน</p>
+  <div class="footer">นโยบายพาร์ทเนอร์ / ค่าคอมมิชชั่น Period To Full-Time Opportunity</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>Section 07 / การยกเลิก</span><span>06 / 09</span></div>
+  <div class="kicker">ส่วนที่ 06 / ตารางการยกเลิกของลูกค้า</div>
+  <h2 class="display">เมื่อพวกเขา<br><span style="color:var(--accent)">ยกเลิก</span></h2>
+  <table class="table">
+    <tr><th>ระยะเวลา</th><th>เงื่อนไขการยกเลิก</th></tr>
+    <tr><td>มากกว่า 20 วัน</td><td>ไม่มีค่าธรรมเนียมการยกเลิกจากค่าทัวร์</td></tr>
+    <tr><td>20–10 วัน</td><td>หักไว้ 20% ของราคาแพ็กเกจ</td></tr>
+    <tr><td>10 วันหรือน้อยกว่า</td><td>ไม่คืนเงิน กรณีไม่มาเข้าร่วมทัวร์ถือเป็นกรณีเดียวกัน</td></tr>
+    <tr><td>ทุกกรณี</td><td><b>เงินมัดจำ 30% ไม่สามารถขอคืนได้</b></td></tr>
+  </table>
+  <div class="kicker" style="margin-top:26px">ส่วนที่ 07 / ผลกระทบต่อค่าคอมมิชชั่นของคุณ</div>
+  <ul class="list">
+    <li>นักท่องเที่ยวที่ยกเลิกจะถูกนำออกจากยอดนับของเดือนนั้น</li>
+    <li><b>ไม่มีการจ่ายค่าคอมมิชชั่นจากจำนวนเงินที่ถูกหักไว้หรือถูกริบ</b> เงินที่ถูกหักไว้ใช้ชดเชยต้นทุนที่ได้ผูกพันกับโรงแรม รถ และผู้ให้บริการแล้ว ไม่ใช่กำไรส่วนต่าง</li>
+    <li>การยกเลิกก่อนถึงจุดที่ไม่สามารถขอคืนเงินได้เพียงแค่นำจำนวนนักท่องเที่ยวออกจากยอด ไม่มีการจ่ายค่าคอมมิชชั่นไปแล้ว จึงไม่มีสิ่งใดต้องเรียกคืน</li>
+    <li>หากทำให้ยอดของเดือนลดลงไปอยู่ในระดับที่ต่ำกว่า จะคำนวณทั้งเดือนใหม่ด้วยอัตราที่ต่ำกว่า และปรับส่วนต่างกับการชำระครั้งถัดไป</li>
+    <li>การยกเลิกหลังถึงจุดที่ไม่สามารถขอคืนเงินได้จะไม่กระทบค่าคอมมิชชั่นที่จ่ายไปแล้ว</li>
+  </ul>
+  <div class="footer">นโยบายพาร์ทเนอร์ / การยกเลิก &amp; ค่าคอมมิชชั่น Effect</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>Section 08 / Edge Cases</span><span>07 / 09</span></div>
+  <div class="kicker">ส่วนที่ 08 / กรุ๊ปเล็กลงและการเปลี่ยนวันที่</div>
+  <h2 class="display">กรณี<br>ที่ต้องพิจารณา</h2>
+  <ul class="list">
+    <li>กรุ๊ป 12 คนที่เดินทางจริง 9 คน จะคิดค่าคอมมิชชั่นจาก 9 คน ผู้ที่ยกเลิก 3 คนจะถูกนำออกจากยอดนับและอาจทำให้ระดับค่าคอมมิชชั่นลดลง</li>
+    <li>การเปลี่ยนวันที่ <b>ไม่ถือเป็นการยกเลิก</b> นักท่องเที่ยวยังคงนับเป็นผลงานของคุณและจะนับในเดือนที่เดินทางจริง ค่าใช้จ่ายจากการแก้ไขการจองไม่มีค่าคอมมิชชั่น</li>
+    <li>หากความร่วมมือสิ้นสุดลง ค่าคอมมิชชั่นยังคงจ่ายสำหรับการจองที่ยืนยันแล้วซึ่งเดินทางมาถึงจุดที่ไม่สามารถขอคืนเงินได้ หลังจากนั้นจะไม่มีค่าคอมมิชชั่นสะสมเพิ่มเติม</li>
+  </ul>
+  <div class="rule"></div>
+  <div class="kicker">ส่วนที่ 09 / บันทึกและการให้เครดิต</div>
+  <ul class="list">
+    <li>บันทึกการจองของ The Himalayan Ramble เป็นข้อมูลอ้างอิงสำหรับจำนวนผู้เดินทาง มูลค่าที่มีสิทธิ์ และระดับค่าคอมมิชชั่น</li>
+    <li>ข้อสงสัยเกี่ยวกับใบสรุปต้องแจ้งภายใน <b>15 วัน</b> นับจากวันที่ได้รับ</li>
+    <li>หากพาร์ทเนอร์สองรายอ้างสิทธิ์ลูกค้ารายเดียวกัน ให้ยึด <b>การแนะนำลูกค้าที่ถูกบันทึกไว้ก่อนที่สุด</b> เป็นหลัก</li>
+    <li>ห้ามนำค่าคอมมิชชั่นไปลดราคา คืนเงิน หรือแบ่งให้ลูกค้าเพื่อใช้เป็นสิ่งจูงใจ</li>
+  </ul>
+  <div class="rule"></div>
+  <div class="kicker">กฎง่าย ๆ</div>
+  <div class="quote">ค่าคอมมิชชั่นติดตามนักท่องเที่ยวที่ยืนยันแล้ว<br>การยกเลิกนำจำนวนนักท่องเที่ยวออกจากยอด<br>ผลงานสร้างอนาคต</div>
+  <div class="footer">นโยบายพาร์ทเนอร์ / Edge Cases, Records &amp; Attribution</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>วิธีการทำงาน</span><span>08 / 09</span></div>
+  <div class="kicker">หนึ่งระบบ / สามตัวชี้วัด</div>
+  <h2 class="display">แยก<br>ตัวเลข<br>ออกจากกัน</h2>
+  <p class="lead">ตัวเลขสามชุดทำหน้าที่แตกต่างกันสามอย่าง ไม่ควรนำมาปะปนกัน</p>
+  <div class="rule"></div>
+  <div class="kicker">01 / ระดับค่าคอมมิชชั่นรายเดือน</div>
+  <div class="subhead">กำหนดอัตราค่าคอมมิชชั่นของคุณ</div>
+  <div class="tier"><div>5–9 travellers</div><strong>2%</strong></div><div class="tier"><div>10–19 travellers</div><strong>4%</strong></div><div class="tier"><div>20–29 travellers</div><strong>6%</strong></div><div class="tier"><div>30–39 travellers</div><strong>8%</strong></div><div class="tier"><div>40–49 travellers</div><strong>10%</strong></div><div class="tier"><div>50+ travellers</div><strong>12%</strong></div>
+  <div class="rule"></div>
+  <div class="kicker">02 / มาตรฐานการเติมเต็มสล็อต</div>
+  <div class="subhead">วัดการมีส่วนร่วมในการเติมเต็มทัวร์ตามกำหนด</div>
+  <p class="body">มาตรฐานปัจจุบันของมานาลี: <b>นักท่องเที่ยวที่ยืนยันแล้ว 10–12 คนขึ้นไปต่อสล็อต</b>, โดยตั้งเป้าให้ครบไม่ช้ากว่า 30 วันก่อนวันออกเดินทางของสล็อตนั้น และประเมินแยกเป็นรายสล็อต</p>
+  <div class="rule"></div>
+  <div class="kicker">03 / ข้อกำหนดด้านผลงานสามเดือน</div>
+  <div class="subhead">วัดความพร้อมสำหรับขั้นตอนถัดไป</div>
+  <p class="body"><b>นักท่องเที่ยวที่ยืนยันแล้วมากกว่า 50 คน</b> ตลอดช่วงเริ่มต้นสามเดือนของการทำงานแบบค่าคอมมิชชั่น โดยนับเป็นรายบุคคล นี่ไม่ใช่จำนวนขั้นต่ำรายเดือน</p>
+  <div class="callout"><h2>เส้นทาง</h2><p>ไม่มีขั้นต่ำรายเดือน → ทำงานเพื่อเติมเต็มสล็อต → นักท่องเที่ยว 50+ คนใน 3 เดือน → พิสูจน์ความสม่ำเสมอ → โอกาสงานเต็มเวลา + เงินเดือน</p></div>
+  <div class="footer">นโยบายพาร์ทเนอร์ / The Three Measures</div>
+</section>
+
+<section class="page">
+  <div class="mast"><span>Contact</span><span>09 / 09</span></div>
+  <div class="kicker">The Himalayan Ramble</div>
+  <h2 class="display">สร้าง<br>ทัวร์รอบถัดไป</h2>
+  <p class="lead">ช่วงค่าคอมมิชชั่นคือจุดเริ่มต้น เป้าหมายคือพิสูจน์ว่าคุณสามารถนำนักท่องเที่ยวจริงมาสู่การเดินทางจริงได้อย่างสม่ำเสมอ แล้วเติบโตต่อไปกับ The Himalayan Ramble</p>
+  <div class="callout"><h2>นักท่องเที่ยว 50+ คน<br>สามเดือน<br>จากนั้นจึงไปสู่ขั้นตอนถัดไป</h2><p>เติมเต็มสล็อต ทำงานอย่างมีประสิทธิภาพ และสร้างผลงานอย่างต่อเนื่อง ผลงานที่แข็งแกร่งตลอดสามเดือนสามารถนำไปสู่ตำแหน่งงานเต็มเวลาพร้อมเงินเดือนได้</p></div>
+  <div class="contact" style="margin-top:28px">
+    <div class="label">ฝ่ายปฏิบัติการ</div><div class="value">Anshul Thakur, The Himalayan Ramble</div>
+    <div class="label">อีเมล</div><div class="value">anshulsimla@gmail.com<br>anshul@thehimalayanramble.com</div>
+    <div class="label">WhatsApp</div><div class="value">+91 89889 33330</div>
+  </div>
+  <p class="small" style="margin-top:20px">บันทึกการจองของ The Himalayan Ramble ยังคงเป็นข้อมูลอ้างอิงสำหรับจำนวนนักท่องเที่ยวที่ยืนยันแล้ว มูลค่าการจองที่มีสิทธิ์ ระดับค่าคอมมิชชั่น และการให้เครดิต ข้อสงสัยใด ๆ เกี่ยวกับใบสรุปค่าคอมมิชชั่นต้องแจ้งภายใน 15 วันนับจากวันที่ได้รับ</p>
+  <div class="quote">คุณนำนักท่องเที่ยวมา<br>เราสร้างการเดินทาง<br>จากนั้นเราสร้างการเดินทางครั้งต่อไป</div>
+  <div class="footer">The Himalayan Ramble / โปรแกรมพาร์ทเนอร์ท่องเที่ยวนานาชาติ / พาร์ทเนอร์ ค่าคอมมิชชั่น &amp; การยกเลิก Policy</div>
+</section>
+
+</main>
+</body>
+</html>
