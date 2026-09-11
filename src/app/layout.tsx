@@ -57,7 +57,7 @@ export default function RootLayout({
             one is needed. Fixes the render-blocking request / network-
             dependency-chain PageSpeed findings without changing when fonts
             visually swap in (display=swap already governs that, unchanged). */}
-        <link id="fontshare-css" rel="stylesheet" href={FONTSHARE_HREF} media="print" />
+        <link id="fontshare-css" rel="stylesheet" href={FONTSHARE_HREF} media="print" suppressHydrationWarning />
         <script
           dangerouslySetInnerHTML={{
             __html:

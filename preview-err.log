@@ -1,0 +1,307 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="jetbrains_..." suppressHydrationWarning={true}>
+                          <head>
+                            <script>
+                            <script>
+                            <link>
+                            <link>
+                            <link>
+                            <link
+                              id="fontshare-css"
+                              rel="stylesheet"
+                              href={"https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet..."}
++                             media="print"
+-                             media="all"
+                            >
+                            ...
+                          ...
+                  ...
+ 
+[browser] Image with src "http://localhost:3000/assets/hpt.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/mit.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/contact/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="jetbrains_..." suppressHydrationWarning={true}>
+                          <head>
+                            <script>
+                            <script>
+                            <link>
+                            <link>
+                            <link>
+                            <link
+                              id="fontshare-css"
+                              rel="stylesheet"
+                              href={"https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet..."}
++                             media="print"
+-                             media="all"
+                            >
+                            ...
+                          ...
+                  ...
+ 
+[browser] Image with src "http://localhost:3000/assets/hpt.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/mit.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/partner-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="jetbrains_..." suppressHydrationWarning={true}>
+                          <head>
+                            <script>
+                            <script>
+                            <link>
+                            <link>
+                            <link>
+                            <link
+                              id="fontshare-css"
+                              rel="stylesheet"
+                              href={"https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet..."}
++                             media="print"
+-                             media="all"
+                            >
+                            ...
+                          ...
+                  ...
+ 
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/partner-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="jetbrains_..." suppressHydrationWarning={true}>
+                          <head>
+                            <script>
+                            <script>
+                            <link>
+                            <link>
+                            <link>
+                            <link
+                              id="fontshare-css"
+                              rel="stylesheet"
+                              href={"https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet..."}
++                             media="print"
+-                             media="all"
+                            >
+                            ...
+                          ...
+                  ...
+ 
+[browser] Image with src "http://localhost:3000/assets/hpt.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/mit.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+⨯ ReferenceError: CONST_MARKER_UNUSED is not defined
+    at Module.eval (src\app\partner-resources\page.tsx:672:1)
+    at module evaluation (C:\Vis Code\thehimalayanramble.com\.next\dev\server\chunks\ssr\[root-of-the-server]__1nsxb_j._.js:5451:47)
+  670 | ];
+  671 |
+> 672 | CONST_MARKER_UNUSED
+      | ^
+  673 |
+  674 | /* ------------------------------------------------------------------ *
+  675 |  *  Data — Commission & Cancellation Policy
+⨯ ReferenceError: CONST_MARKER_UNUSED is not defined
+    at Module.eval (src\app\partner-resources\page.tsx:672:1)
+    at module evaluation (C:\Vis Code\thehimalayanramble.com\.next\dev\server\chunks\ssr\[root-of-the-server]__1nsxb_j._.js:5451:47)
+  670 | ];
+  671 |
+> 672 | CONST_MARKER_UNUSED
+      | ^
+  673 |
+  674 | /* ------------------------------------------------------------------ *
+  675 |  *  Data — Commission & Cancellation Policy {
+  page: '/partner-resources'
+}
+⨯ ReferenceError: CONST_MARKER_UNUSED is not defined
+    at Module.eval (src\app\partner-resources\page.tsx:672:1)
+    at module evaluation (C:\Vis Code\thehimalayanramble.com\.next\dev\server\chunks\ssr\[root-of-the-server]__1nsxb_j._.js:5451:47)
+  670 | ];
+  671 |
+> 672 | CONST_MARKER_UNUSED
+      | ^
+  673 |
+  674 | /* ------------------------------------------------------------------ *
+  675 |  *  Data — Commission & Cancellation Policy {
+  page: '/partner-resources'
+}
+⨯ ReferenceError: CONST_MARKER_UNUSED is not defined
+    at Module.eval (src\app\partner-resources\page.tsx:672:1)
+    at module evaluation (C:\Vis Code\thehimalayanramble.com\.next\dev\server\chunks\ssr\[root-of-the-server]__1nsxb_j._.js:5451:47)
+  670 | ];
+  671 |
+> 672 | CONST_MARKER_UNUSED
+      | ^
+  673 |
+  674 | /* ------------------------------------------------------------------ *
+  675 |  *  Data — Commission & Cancellation Policy {
+  page: '/partner-resources'
+}
+[browser] Uncaught ReferenceError: CONST_MARKER_UNUSED is not defined
+    at Module.eval (src\app\partner-resources\page.tsx:672:1)
+    at module evaluation (.next\dev\server\chunks\ssr\[root-of-the-server]__1nsxb_j._.js:5451:47)
+  670 | ];
+  671 |
+> 672 | CONST_MARKER_UNUSED
+      | ^
+  673 |
+  674 | /* ------------------------------------------------------------------ *
+  675 |  *  Data — Commission & Cancellation Policy
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/partner-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="jetbrains_..." suppressHydrationWarning={true}>
+                          <head>
+                            <script>
+                            <script>
+                            <link>
+                            <link>
+                            <link>
+                            <link
+                              id="fontshare-css"
+                              rel="stylesheet"
+                              href={"https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet..."}
++                             media="print"
+-                             media="all"
+                            >
+                            ...
+                          ...
+                  ...
+ 
+[browser] Encountered two children with the same key, `delhi`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Image with src "http://localhost:3000/assets/hpt.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/mit.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/hpt.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Image with src "http://localhost:3000/assets/mit.webp" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.

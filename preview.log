@@ -1,0 +1,61 @@
+
+> the-himalayan-ramble@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.3:3000
+✓ Ready in 2.1s
+✓ Running next.config.ts took 303ms
+
+○ Compiling / ...
+ GET / 200 in 670ms (next.js: 43ms, application-code: 628ms)
+ GET / 200 in 392ms (next.js: 18ms, application-code: 374ms)
+ GET /partner-resources/ 200 in 3.7s (next.js: 1850ms, application-code: 1882ms)
+ GET /himachal-pradesh/ 200 in 6.9s (next.js: 2.0s, generate-params: 3.3s, application-code: 1494ms)
+ GET /himachal-pradesh/ 200 in 519ms (next.js: 189ms, generate-params: 32ms, application-code: 298ms)
+ GET /blog/ 200 in 2.9s (next.js: 1996ms, application-code: 944ms)
+ GET /himachal-pradesh/ 200 in 145ms (next.js: 15ms, generate-params: 0.1ms, application-code: 129ms)
+○ Compiling /[region]/[place] ...
+ GET /terms/ 200 in 3.1s (next.js: 3.0s, application-code: 171ms)
+ GET /contact/ 200 in 5.1s (next.js: 4.7s, application-code: 475ms)
+ GET /contact/ 200 in 256ms (next.js: 105ms, application-code: 151ms)
+ GET /himachal-pradesh/shimla/ 200 in 7.8s (next.js: 2.7s, generate-params: 4.9s, application-code: 144ms)
+ GET /contact/ 200 in 825ms (next.js: 196ms, application-code: 629ms)
+ GET /partner-resources/ 200 in 533ms (next.js: 17ms, application-code: 516ms)
+ GET /partner-resources/ 200 in 2.1s (next.js: 11ms, application-code: 2.1s)
+ GET / 200 in 133ms (next.js: 25ms, application-code: 108ms)
+ GET / 200 in 120ms (next.js: 16ms, application-code: 105ms)
+✓ Compiled in 2.7s
+✓ Compiled in 1272ms
+✓ Compiled in 362ms
+✓ Compiled in 425ms
+ GET /partner-resources/ 200 in 680ms (next.js: 28ms, application-code: 653ms)
+✓ Compiled in 371ms
+✓ Compiled in 418ms
+✓ Compiled in 416ms
+✓ Compiled in 367ms
+✓ Compiled in 440ms
+✓ Compiled in 465ms
+✓ Compiled in 367ms
+✓ Compiled in 673ms
+✓ Compiled in 490ms
+✓ Compiled in 538ms
+✓ Compiled in 371ms
+✓ Compiled in 319ms
+✓ Compiled in 468ms
+ GET /partner-resources/ 200 in 619ms (next.js: 16ms, application-code: 602ms)
+ GET /partner-resources/ 200 in 1059ms (next.js: 49ms, application-code: 1010ms)
+ GET /partner-resources/ 200 in 657ms (next.js: 33ms, application-code: 624ms)
+ GET /partner-resources/ 200 in 544ms (next.js: 29ms, application-code: 515ms)
+○ Compiling /_error ...
+ GET /partner-resources/ 500 in 11.7s (next.js: 10.7s, application-code: 978ms)
+ GET /partner-resources/ 500 in 248ms (next.js: 219ms, application-code: 29ms)
+ GET /partner-resources/ 200 in 3.7s (next.js: 24ms, application-code: 3.6s)
+ GET /partner-resources/ 200 in 488ms (next.js: 18ms, application-code: 469ms)
+ GET /partner-resources/ 200 in 499ms (next.js: 30ms, application-code: 469ms)
+ GET /partner-resources/ 200 in 486ms (next.js: 52ms, application-code: 434ms)
+ GET /partner-resources/ 200 in 888ms (next.js: 58ms, application-code: 830ms)
+ GET /partner-resources/ 200 in 464ms (next.js: 33ms, application-code: 431ms)
+ GET /partner-resources/ 200 in 832ms (next.js: 24ms, application-code: 808ms)
+ GET /partner-resources/ 200 in 518ms (next.js: 12ms, application-code: 506ms)
