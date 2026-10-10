@@ -59,3 +59,4 @@
  GET /partner-resources/ 200 in 464ms (next.js: 33ms, application-code: 431ms)
  GET /partner-resources/ 200 in 832ms (next.js: 24ms, application-code: 808ms)
  GET /partner-resources/ 200 in 518ms (next.js: 12ms, application-code: 506ms)
+ GET /partner-resources/ 200 in 916ms (next.js: 21ms, application-code: 896ms)
