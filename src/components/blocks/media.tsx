@@ -31,6 +31,7 @@ export function Media({
         fill
         sizes={sizes ?? "(max-width: 860px) 100vw, 50vw"}
         priority={priority}
+        fetchPriority={priority ? "high" : undefined}
         loading={priority ? undefined : "lazy"}
       />
     </div>

@@ -4,9 +4,6 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
-const FONTSHARE_HREF =
-  "https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,1&f[]=cabinet-grotesk@800,900,700,500,400,1&f[]=general-sans@400,500,600,1&display=swap";
-
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["500", "600"],
@@ -48,25 +45,26 @@ export default function RootLayout({
           }}
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
-        {/* Non-render-blocking stylesheet load: media="print" (browsers still
-            fetch print-media sheets, just don't block first paint on them)
-            swaps to "all" once loaded via the inline script below. React
-            auto-hoists a preload for this <link> on its own, so no manual
-            one is needed. Fixes the render-blocking request / network-
-            dependency-chain PageSpeed findings without changing when fonts
-            visually swap in (display=swap already governs that, unchanged). */}
-        <link id="fontshare-css" rel="stylesheet" href={FONTSHARE_HREF} media="print" suppressHydrationWarning />
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(l){if(!l)return;var s=function(){l.media='all';l.removeEventListener('load',s);};l.addEventListener('load',s);})(document.getElementById('fontshare-css'));",
-          }}
+        {/* Preload the two above-the-fold brand faces (self-hosted, @font-face
+            in globals.css). Started at HTML-parse time rather than after CSS
+            parse + font discovery, which shortens the fallback-font window
+            (less CLS from the swap) and flattens the network dependency
+            chain that previously ran api.fontshare.com CSS -> cdn.fontshare
+            font files. */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/clash-display-700.woff2"
+          crossOrigin="anonymous"
         />
-        <noscript>
-          <link rel="stylesheet" href={FONTSHARE_HREF} />
-        </noscript>
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/general-sans-400.woff2"
+          crossOrigin="anonymous"
+        />
         {/* Synchronous, pre-hydration flag for the [data-reveal] CSS gate in
             globals.css. Must run before first paint (not in a "use client"
             useEffect, which fires after paint/hydration) — otherwise

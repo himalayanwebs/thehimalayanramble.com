@@ -1,22 +1,43 @@
-// One-time (re-runnable) compression pass over public/graphics/.
+// One-time (re-runnable) compression pass over the two image trees the site
+// actually ships: public/graphics (page/hero photography) and
+// public/assets/testimonials (Google-review avatars + trip photos).
 //
-// Source photos are full camera-resolution Pexels/Unsplash originals (some
-// 8000px+ wide, several MB each) — nothing in this site's layout renders
-// them anywhere near that size. Resizing down to a realistic display
-// ceiling and re-encoding is where nearly all the savings come from; format
-// stays JPEG (not WebP) specifically so every existing `src` path in the
-// data files keeps working unchanged — only the on-disk bytes shrink.
+// graphics/: source photos are full camera-resolution Pexels/Unsplash
+// originals — nothing in this layout renders them anywhere near that size.
+// Resizing to a realistic display ceiling and re-encoding is where nearly
+// all the savings come from; format stays JPEG (not WebP) specifically so
+// every existing `src` path in the data files keeps working unchanged —
+// only the on-disk bytes shrink. Files that are already within the
+// dimension ceiling but still heavyweight (> JPEG_SIZE_THRESHOLD) get a
+// re-encode too, otherwise the first run's leftovers would never shrink.
 //
-// Safe to re-run: images already at/under MAX_DIMENSION and already smaller
-// than a fresh re-encode are left untouched (skips genuinely tiny/already-
-// optimized files rather than re-compressing them again).
+// testimonials/: avatars render at 40px and trip photos at ~120px, but the
+// originals are multi-hundred-KB (up to 2.8MB) PNG/WebP scans. These are
+// always converted to WebP at role-appropriate sizes — `-000` suffix =
+// avatar (small square), anything else = photo. The old source file is
+// removed after a successful write so the huge originals stop shipping;
+// testimonials.ts paths are updated from .png to .webp by the same run's
+// follow-up edit (the script prints the renames it caused).
+//
+// Safe to re-run: images already at/under the target dimensions (and, for
+// graphics JPEGs, under the size threshold) are left untouched rather
+// than being lossily re-encoded again on every run.
 import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const ROOT = path.join(import.meta.dirname, "..", "public", "graphics");
-const MAX_DIMENSION = 1920;
-const JPEG_QUALITY = 78;
+const ROOT = path.join(import.meta.dirname, "..");
+const GRAPHICS_DIR = path.join(ROOT, "public", "graphics");
+const TESTIMONIALS_DIR = path.join(ROOT, "public", "assets", "testimonials");
+
+const GRAPHICS_MAX_DIMENSION = 1600;
+const GRAPHICS_JPEG_QUALITY = 72;
+const GRAPHICS_SIZE_THRESHOLD = 250 * 1024;
+
+const AVATAR_MAX_DIMENSION = 160;
+const PHOTO_MAX_DIMENSION = 480;
+const AVATAR_WEBP_QUALITY = 80;
+const PHOTO_WEBP_QUALITY = 75;
 
 async function walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -24,72 +45,208 @@ async function walk(dir) {
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) files.push(...(await walk(full)));
-    else if (/\.(jpe?g|png)$/i.test(entry.name)) files.push(full);
+    else if (/\.(jpe?g|png|webp)$/i.test(entry.name)) files.push(full);
   }
   return files;
 }
 
-async function optimize(file) {
-  const before = (await fs.stat(file)).size;
-  const meta = await sharp(file).metadata();
+// Write-then-swap instead of renaming over the destination directly — on
+// Windows, a rename onto an existing path that anything (antivirus,
+// indexer, the previous crashed run's libvips handle) still holds open
+// fails with EPERM, and sharp/libvips can keep the source handle open
+// even after toBuffer(). Removing the destination first turns the
+// rename into a plain create, which doesn't care what held the old file.
+// Windows Defender briefly locks freshly written files while it scans
+// them, so the whole write/rm/rename sequence is retried with backoff;
+// if it still fails the caller logs and moves on rather than aborting
+// the batch.
+async function retryWindowsLock(fn) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if ((err.code === "EPERM" || err.code === "EBUSY") && attempt < 10) {
+        await new Promise((resolve) => setTimeout(resolve, 250));
+        continue;
+      }
+      throw err;
+    }
+  }
+}
 
-  // Dimensions, not output byte size, are the right "already done" signal.
-  // Re-encoding a JPEG that's already at MAX_DIMENSION and already quality-78
-  // still yields a marginally smaller file every time (lossy re-compression
-  // always finds a little more to shave), so comparing before/after bytes
-  // would silently re-compress — and generationally degrade — every image
-  // on every re-run instead of skipping the ones already done.
-  if (meta.width <= MAX_DIMENSION && meta.height <= MAX_DIMENSION) {
+async function writeAtomic(file, buffer) {
+  await retryWindowsLock(async () => {
+    const tmp = `${file}.tmp`;
+    await fs.writeFile(tmp, buffer);
+    await fs.rm(file, { force: true });
+    await fs.rename(tmp, file);
+  });
+}
+
+async function optimizeGraphics(file) {
+  // Buffer up front — see the note in optimizeTestimonial: sharp(path)
+  // keeps the source handle open on Windows and blocks the swap.
+  const input = await fs.readFile(file);
+  const before = input.length;
+  const meta = await sharp(input).metadata();
+  const withinDimensions =
+    meta.width <= GRAPHICS_MAX_DIMENSION && meta.height <= GRAPHICS_MAX_DIMENSION;
+  const withinSize = before <= GRAPHICS_SIZE_THRESHOLD;
+
+  if (withinDimensions && withinSize) {
     return { file, before, after: before, skipped: true };
   }
 
+  const pipeline = sharp(input).resize({
+    width: GRAPHICS_MAX_DIMENSION,
+    height: GRAPHICS_MAX_DIMENSION,
+    fit: "inside",
+    withoutEnlargement: true,
+  });
+
   const buffer =
     meta.format === "png"
-      ? await sharp(file)
-          .resize({ width: MAX_DIMENSION, height: MAX_DIMENSION, fit: "inside", withoutEnlargement: true })
-          .png({ quality: 82, compressionLevel: 9 })
-          .toBuffer()
-      : await sharp(file)
-          .resize({ width: MAX_DIMENSION, height: MAX_DIMENSION, fit: "inside", withoutEnlargement: true })
-          .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
-          .toBuffer();
+      ? await pipeline.png({ quality: 82, compressionLevel: 9 }).toBuffer()
+      : await pipeline.jpeg({ quality: GRAPHICS_JPEG_QUALITY, mozjpeg: true }).toBuffer();
 
-  // Write-then-rename instead of overwriting `file` directly — on Windows,
-  // sharp/libvips can still hold the source file handle open at this point,
-  // and writing straight to the same path intermittently fails with an
-  // UNKNOWN/EBUSY-style error. Renaming over it after the handle is free
-  // (post-buffer) is atomic and avoids the race entirely.
-  const tmp = `${file}.tmp`;
-  await fs.writeFile(tmp, buffer);
-  await fs.rename(tmp, file);
+  // Never keep a "compression" that made the file bigger.
+  if (buffer.length >= before && withinDimensions) {
+    return { file, before, after: before, skipped: true };
+  }
+
+  await writeAtomic(file, buffer);
   return { file, before, after: buffer.length, skipped: false };
 }
 
-const files = await walk(ROOT);
-console.log(`Found ${files.length} images under public/graphics\n`);
+async function optimizeTestimonial(file) {
+  const base = path.basename(file);
+  const match = /^(.+)-(\d{3})\.(?:png|jpe?g|webp)$/i.exec(base);
+  if (!match) return null;
 
-let totalBefore = 0;
-let totalAfter = 0;
-let optimizedCount = 0;
+  const isAvatar = match[2] === "000";
+  const maxDimension = isAvatar ? AVATAR_MAX_DIMENSION : PHOTO_MAX_DIMENSION;
+  const quality = isAvatar ? AVATAR_WEBP_QUALITY : PHOTO_WEBP_QUALITY;
 
-for (const file of files) {
-  const result = await optimize(file);
-  totalBefore += result.before;
-  totalAfter += result.after;
-  const rel = path.relative(ROOT, result.file);
-  if (result.skipped) {
-    console.log(`skip   ${rel} (${Math.round(result.before / 1024)}KB, already optimal)`);
-  } else {
-    optimizedCount++;
-    const pct = Math.round((1 - result.after / result.before) * 100);
+  // Read fully into a buffer up front and decode only from the buffer:
+  // passing the path to sharp() makes libvips keep the source file open
+  // in its input cache on Windows, which then blocks the rm/rename in
+  // writeAtomic with EBUSY no matter how long we retry.
+  const input = await fs.readFile(file);
+  const before = input.length;
+  const meta = await sharp(input).metadata();
+  const isAlreadySizedWebp =
+    meta.format === "webp" && meta.width <= maxDimension && meta.height <= maxDimension;
+  if (isAlreadySizedWebp) {
+    return { kind: "skip", file, before };
+  }
+
+  const buffer = await sharp(input)
+    .resize({ width: maxDimension, height: maxDimension, fit: "inside", withoutEnlargement: true })
+    .webp({ quality })
+    .toBuffer();
+
+  const webpFile = file.replace(/\.(?:png|jpe?g|webp)$/i, ".webp");
+  await writeAtomic(webpFile, buffer);
+
+  // Same-path replacement (webp -> webp) is done once the new bytes are
+  // safely in place; a PNG/JPEG source is removed only after its .webp
+  // sibling exists, so a crash mid-run never loses an image that the data
+  // files still reference.
+  if (path.resolve(webpFile) !== path.resolve(file)) {
+    await retryWindowsLock(() => fs.rm(file, { force: true }));
+  }
+
+  return {
+    kind: path.resolve(webpFile) === path.resolve(file) ? "resize" : "convert",
+    file,
+    webpFile,
+    before,
+    after: buffer.length,
+  };
+}
+
+// Optional first argument limits the pass: `node scripts/optimize-images.mjs
+// testimonials` runs only the testimonials tree (useful when the graphics
+// pass already finished and must not be lossily re-encoded again).
+const only = process.argv[2];
+
+console.log("— public/graphics —");
+const graphicsFiles = only === "testimonials" ? [] : await walk(GRAPHICS_DIR);
+let gBefore = 0;
+let gAfter = 0;
+let gOptimized = 0;
+let gFailed = 0;
+for (const file of graphicsFiles) {
+  try {
+    const r = await optimizeGraphics(file);
+    gBefore += r.before;
+    gAfter += r.after;
+    const rel = path.relative(GRAPHICS_DIR, r.file);
+    if (r.skipped) {
+      console.log(`skip   ${rel} (${Math.round(r.before / 1024)}KB, already optimal)`);
+    } else {
+      gOptimized++;
+      const pct = Math.round((1 - r.after / r.before) * 100);
+      console.log(`${Math.round(r.before / 1024)}KB -> ${Math.round(r.after / 1024)}KB (-${pct}%)  ${rel}`);
+    }
+  } catch (err) {
+    gFailed++;
+    console.log(`FAIL   ${path.relative(GRAPHICS_DIR, file)} (${err.code || err.message}) — re-run to retry`);
+  }
+}
+
+console.log("\n— public/assets/testimonials —");
+const testimonialFiles = await walk(TESTIMONIALS_DIR);
+let tBefore = 0;
+let tAfter = 0;
+let tTouched = 0;
+const renamedPaths = [];
+let tFailed = 0;
+for (const file of testimonialFiles) {
+  let r;
+  try {
+    r = await optimizeTestimonial(file);
+  } catch (err) {
+    tFailed++;
     console.log(
-      `${Math.round(result.before / 1024)}KB -> ${Math.round(result.after / 1024)}KB (-${pct}%)  ${rel}`
+      `FAIL   ${path.relative(TESTIMONIALS_DIR, file)} (${err.code || err.message}) — re-run to retry`
     );
+    continue;
+  }
+  if (!r) continue;
+  const rel = path.relative(TESTIMONIALS_DIR, r.file);
+  if (r.kind === "skip") {
+    tBefore += r.before;
+    tAfter += r.before;
+    console.log(`skip   ${rel} (${Math.round(r.before / 1024)}KB, already sized)`);
+  } else {
+    tTouched++;
+    tBefore += r.before;
+    tAfter += r.after;
+    const pct = Math.round((1 - r.after / r.before) * 100);
+    console.log(
+      `${Math.round(r.before / 1024)}KB -> ${Math.round(r.after / 1024)}KB (-${pct}%)  ${rel}` +
+        (r.kind === "convert" ? ` => ${path.basename(r.webpFile)}` : "")
+    );
+    if (r.kind === "convert") {
+      renamedPaths.push({
+        from: `/assets/testimonials/${path.basename(r.file)}`,
+        to: `/assets/testimonials/${path.basename(r.webpFile)}`,
+      });
+    }
   }
 }
 
 console.log(
-  `\nDone. ${optimizedCount}/${files.length} files re-encoded. ` +
-    `${Math.round(totalBefore / 1024 / 1024)}MB -> ${Math.round(totalAfter / 1024 / 1024)}MB ` +
-    `(-${Math.round((1 - totalAfter / totalBefore) * 100)}%)`
+  `\nDone. graphics: ${gOptimized}/${graphicsFiles.length} re-encoded` +
+    (gFailed ? `, ${gFailed} FAILED` : "") +
+    ` (${Math.round(gBefore / 1024 / 1024)}MB -> ${Math.round(gAfter / 1024 / 1024)}MB). ` +
+    `testimonials: ${tTouched}/${testimonialFiles.length} resized/converted` +
+    (tFailed ? `, ${tFailed} FAILED` : "") +
+    ` (${Math.round(tBefore / 1024 / 1024)}MB -> ${Math.round(tAfter / 1024 / 1024)}MB).`
 );
+
+if (renamedPaths.length > 0) {
+  console.log("\nPath renames to apply in src/data/testimonials.ts:");
+  for (const { from, to } of renamedPaths) console.log(`  ${from}  ->  ${to}`);
+}
