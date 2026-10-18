@@ -62,7 +62,21 @@ export default function RootLayout({
           rel="preload"
           as="font"
           type="font/woff2"
+          href="/fonts/clash-display-600.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
           href="/fonts/general-sans-400.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/general-sans-500.woff2"
           crossOrigin="anonymous"
         />
         {/* Synchronous, pre-hydration flag for the [data-reveal] CSS gate in

@@ -7,6 +7,14 @@
 # doesn't read .htaccess this file is simply ignored, not harmful.
 RewriteEngine On
 
+# Canonical host: one redirect from www (and http, where this file sees the
+# request before any host-level upgrade) to the apex https URL that the
+# sitemap, metadataBase, and every canonical link tag already use. Serves
+# duplicate content on www today; a single 301 fixes rankings and removes
+# a redirect hop for the diagnostics tool when it probes the www host.
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://thehimalayanramble.com%{REQUEST_URI} [R=301,L]
+
 # /index.html -> /
 RewriteRule ^index\.html$ / [R=301,L]
 
@@ -28,6 +36,16 @@ RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript
   AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
   AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf application/vnd.ms-fontobject
+</IfModule>
+
+# Brotli where the host offers it (LiteSpeed/mod_brotli on Hostinger) —
+# measurably smaller HTML/CSS/JS than gzip for the payload audits; no-op
+# when the module is absent.
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/x-javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json application/xml application/rss+xml
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
 </IfModule>
 
 # --- Cache lifetimes ---

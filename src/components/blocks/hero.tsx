@@ -26,7 +26,7 @@ export function Hero({
   return (
     <section className={variant === "place" ? "hero hero--place" : "hero"}>
       <div className="hero__media">
-        <Media image={image} aspect="21x9" priority />
+        <Media image={image} aspect="21x9" priority sizes="100vw" />
       </div>
       <div className="hero__scrim" aria-hidden="true" />
       <div className="hero__content on-dark">

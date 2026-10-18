@@ -50,6 +50,7 @@ export default function BlogPage() {
             }}
             aspect="21x9"
             priority
+            sizes="100vw"
           />
         </div>
         <div className="hero__scrim" aria-hidden="true" />
@@ -79,7 +80,11 @@ export default function BlogPage() {
                 {region.places.map((place) => (
                   <Reveal key={place.slug} group={region.slug} asChild>
                     <Link href={`/${region.slug}/${place.slug}/`} className="mosaic__tile">
-                      <Media image={place.image} aspect="4x5" />
+                      <Media
+                        image={place.image}
+                        aspect="4x5"
+                        sizes="(max-width: 639px) 50vw, 33vw"
+                      />
                       <div className="mosaic__name">
                         <h3 className="h3">{place.name}</h3>
                       </div>

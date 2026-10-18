@@ -34,18 +34,35 @@ const GRAPHICS_MAX_DIMENSION = 1600;
 const GRAPHICS_JPEG_QUALITY = 72;
 const GRAPHICS_SIZE_THRESHOLD = 250 * 1024;
 
+// Responsive variant widths for public/graphics. Each source jpg/png gets
+// sibling WebP files (same basename + "-<width>.webp") so the Media
+// component can ship a real srcSet instead of one fixed-size JPEG for
+// every viewport. The source file stays on disk as the plain-`src`
+// fallback for the (now unsupported-by-browserslist) no-WebP case, and
+// as the source of truth for future re-runs.
+const VARIANT_WIDTHS = [640, 960, 1600];
+const VARIANT_WEBP_QUALITY = 75;
+const MANIFEST_FILE = path.join(ROOT, "src", "data", "image-manifest.json");
+
 const AVATAR_MAX_DIMENSION = 160;
 const PHOTO_MAX_DIMENSION = 480;
 const AVATAR_WEBP_QUALITY = 80;
 const PHOTO_WEBP_QUALITY = 75;
 
-async function walk(dir) {
+// Variant files (foo-640.webp …) match the image extension test, so the
+// graphics walk filters them out by name: they are outputs, never inputs.
+const VARIANT_SUFFIX_RE = new RegExp(`-(?:${VARIANT_WIDTHS.join("|")})\\.webp$`, "i");
+
+async function walk(dir, { skipVariants = false } = {}) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   const files = [];
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) files.push(...(await walk(full)));
-    else if (/\.(jpe?g|png|webp)$/i.test(entry.name)) files.push(full);
+    if (entry.isDirectory()) files.push(...(await walk(full, { skipVariants })));
+    else if (/\.(jpe?g|png|webp)$/i.test(entry.name)) {
+      if (skipVariants && VARIANT_SUFFIX_RE.test(entry.name)) continue;
+      files.push(full);
+    }
   }
   return files;
 }
@@ -109,13 +126,47 @@ async function optimizeGraphics(file) {
       ? await pipeline.png({ quality: 82, compressionLevel: 9 }).toBuffer()
       : await pipeline.jpeg({ quality: GRAPHICS_JPEG_QUALITY, mozjpeg: true }).toBuffer();
 
-  // Never keep a "compression" that made the file bigger.
-  if (buffer.length >= before && withinDimensions) {
+  // Never keep a "compression" that made the file bigger — and don't
+  // rewrite files the encoder only "saves" a few percent on: a
+  // lossily re-encoded 1600px JPEG often lands within a hair of its
+  // input, and writing those every run both churns bytes and drifts
+  // quality down over time (this pass is re-runnable by design).
+  if (withinDimensions && buffer.length >= before * 0.95) {
     return { file, before, after: before, skipped: true };
   }
 
   await writeAtomic(file, buffer);
   return { file, before, after: buffer.length, skipped: false };
+}
+
+// Emit width-limited WebP siblings for one graphics source and return the
+// public path + available widths for the manifest. Existing variants are
+// trusted as-is (re-runs stay cheap and never fight open file handles on
+// Windows); missing ones are generated from the source buffer in one pass
+// per width. A source narrower than every target width yields an empty
+// width list — the Media component then renders a plain single-src img.
+async function generateVariants(file) {
+  const base = file.replace(/\.(?:jpe?g|png|webp)$/i, "");
+  const relSrc = "/" + path.relative(path.join(ROOT, "public"), file).split(path.sep).join("/");
+  const input = await fs.readFile(file);
+  const meta = await sharp(input).metadata();
+  const widths = [];
+  for (const width of VARIANT_WIDTHS) {
+    if (!meta.width || width > meta.width) continue;
+    const variant = `${base}-${width}.webp`;
+    try {
+      await fs.access(variant);
+      widths.push(width);
+      continue;
+    } catch {}
+    const buffer = await sharp(input)
+      .resize({ width, withoutEnlargement: true })
+      .webp({ quality: VARIANT_WEBP_QUALITY })
+      .toBuffer();
+    await writeAtomic(variant, buffer);
+    widths.push(width);
+  }
+  return { src: relSrc, widths };
 }
 
 async function optimizeTestimonial(file) {
@@ -171,7 +222,7 @@ async function optimizeTestimonial(file) {
 const only = process.argv[2];
 
 console.log("— public/graphics —");
-const graphicsFiles = only === "testimonials" ? [] : await walk(GRAPHICS_DIR);
+const graphicsFiles = only === "testimonials" ? [] : await walk(GRAPHICS_DIR, { skipVariants: true });
 let gBefore = 0;
 let gAfter = 0;
 let gOptimized = 0;
@@ -192,6 +243,34 @@ for (const file of graphicsFiles) {
   } catch (err) {
     gFailed++;
     console.log(`FAIL   ${path.relative(GRAPHICS_DIR, file)} (${err.code || err.message}) — re-run to retry`);
+  }
+}
+
+console.log("\n— graphics responsive variants (WebP) —");
+const manifest = {};
+let vFailed = 0;
+for (const file of graphicsFiles) {
+  try {
+    const { src, widths } = await generateVariants(file);
+    manifest[src] = widths.sort((a, b) => a - b);
+    console.log(`ok     ${src} (${manifest[src].join(", ") || "no variants"})`);
+  } catch (err) {
+    vFailed++;
+    console.log(
+      `FAIL   ${path.relative(GRAPHICS_DIR, file)} (${err.code || err.message}) — re-run to retry`
+    );
+  }
+}
+// Manifest is rewritten every successful run from actual disk state; a run
+// with every variant already present is a no-op write (content identical).
+if (Object.keys(manifest).length > 0) {
+  const nextJson = JSON.stringify(manifest, null, 2) + "\n";
+  const prevJson = await fs.readFile(MANIFEST_FILE, "utf8").catch(() => null);
+  if (prevJson !== nextJson) {
+    await fs.writeFile(MANIFEST_FILE, nextJson);
+    console.log(`wrote  ${path.relative(ROOT, MANIFEST_FILE)}`);
+  } else {
+    console.log(`skip   ${path.relative(ROOT, MANIFEST_FILE)} (unchanged)`);
   }
 }
 
@@ -241,6 +320,7 @@ console.log(
   `\nDone. graphics: ${gOptimized}/${graphicsFiles.length} re-encoded` +
     (gFailed ? `, ${gFailed} FAILED` : "") +
     ` (${Math.round(gBefore / 1024 / 1024)}MB -> ${Math.round(gAfter / 1024 / 1024)}MB). ` +
+    `variants: ${vFailed ? `${vFailed} FAILED` : "ok"} across ${graphicsFiles.length} sources. ` +
     `testimonials: ${tTouched}/${testimonialFiles.length} resized/converted` +
     (tFailed ? `, ${tFailed} FAILED` : "") +
     ` (${Math.round(tBefore / 1024 / 1024)}MB -> ${Math.round(tAfter / 1024 / 1024)}MB).`
