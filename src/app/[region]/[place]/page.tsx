@@ -6,6 +6,8 @@ import { NAV_REGIONS } from "@/data/nav";
 
 type Params = Promise<{ region: string; place: string }>;
 
+const SITE_URL = "https://thehimalayanramble.com";
+
 export function generateStaticParams() {
   return getAllPlaces().map((place) => ({ region: place.region, place: place.slug }));
 }
@@ -14,18 +16,23 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { region: regionSlug, place: placeSlug } = await params;
   const place = getPlace(regionSlug, placeSlug);
   if (!place) return {};
+
+  const imageUrl = place.hero.image.src.startsWith("http")
+    ? place.hero.image.src
+    : `${SITE_URL}${place.hero.image.src}`;
+
   return {
     // place.seo.title is already a complete "X | The Himalayan Ramble"
     // string — `absolute` stops the root layout's title.template from
     // appending the suffix a second time.
     title: { absolute: place.seo.title },
     description: place.seo.description,
-    alternates: { canonical: `/${place.region}/${place.slug}/` },
+    alternates: { canonical: `${SITE_URL}/${place.region}/${place.slug}/` },
     openGraph: {
       title: place.seo.title,
       description: place.seo.description,
-      url: `/${place.region}/${place.slug}/`,
-      images: [place.hero.image.src],
+      url: `${SITE_URL}/${place.region}/${place.slug}/`,
+      images: [imageUrl],
     },
   };
 }

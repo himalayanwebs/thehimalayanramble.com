@@ -22,116 +22,153 @@ import {
   HOME_SIGNATURE_ROUTES,
 } from "@/data/home";
 
+const SITE_URL = "https://thehimalayanramble.com";
+
+const heroImageUrl = HOME_HERO.image.src.startsWith("http")
+  ? HOME_HERO.image.src
+  : `${SITE_URL}${HOME_HERO.image.src}`;
+
 export const metadata: Metadata = {
   // absolute: HOME_SEO.title is the full site title already — this stops
   // the root layout's title.template from appending the brand suffix again.
   title: { absolute: HOME_SEO.title },
   description: HOME_SEO.description,
-  alternates: { canonical: "/" },
+  alternates: { canonical: `${SITE_URL}/` },
   openGraph: {
     title: HOME_SEO.title,
     description: HOME_SEO.description,
-    url: "/",
-    images: [HOME_HERO.image.src],
+    url: `${SITE_URL}/`,
+    images: [heroImageUrl],
   },
 };
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["TravelAgency", "LocalBusiness"],
+    "name": "The Himalayan Ramble",
+    "image": heroImageUrl,
+    "url": SITE_URL,
+    "telephone": CONTACT.phone,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Shimla",
+      "addressRegion": "Himachal Pradesh",
+      "addressCountry": "IN"
+    },
+    "priceRange": "₹₹",
+    "foundingDate": "2000",
+    "description": HOME_SEO.description,
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Himalayas"
+    },
+    "sameAs": [
+      "https://share.google/9D0WT2HgiJPNx5L6Z"
+    ]
+  };
+
   return (
-    <main id="main">
-      <Hero
-        image={HOME_HERO.image}
-        eyebrow={HOME_HERO.eyebrow}
-        title={
-          <span className="misregister">
-            We know which pass is closed{" "}
-            <span className="text-brand-accent">before</span> you ask.
-          </span>
-        }
-        lede={HOME_HERO.lede}
-        actions={
-          <>
-            <Button asChild variant="accent" size="brand">
-              <Link href="/contact/">Plan Your Trip</Link>
-            </Button>
-            <Button asChild variant="brand-ghost" size="brand">
-              <a href={CONTACT.phoneHref}>Call {CONTACT.phone}</a>
-            </Button>
-          </>
-        }
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <StampMark />
+      <main id="main">
+        <Hero
+          image={HOME_HERO.image}
+          eyebrow={HOME_HERO.eyebrow}
+          title={
+            <span className="misregister">
+              We know which pass is closed{" "}
+              <span className="text-brand-accent">before</span> you ask.
+            </span>
+          }
+          lede={HOME_HERO.lede}
+          actions={
+            <>
+              <Button asChild variant="accent" size="brand">
+                <Link href="/contact/">Plan Your Trip</Link>
+              </Button>
+              <Button asChild variant="brand-ghost" size="brand">
+                <a href={CONTACT.phoneHref}>Call {CONTACT.phone}</a>
+              </Button>
+            </>
+          }
+        />
+        <StampMark />
 
-      <TrustStrip stats={HOME_TRUST_STATS} badges={HOME_TRUST_BADGES} />
+        <TrustStrip stats={HOME_TRUST_STATS} badges={HOME_TRUST_BADGES} />
 
-      <FeatureBlock data={HOME_FOUNDER_BLOCK} group="founder" />
+        <FeatureBlock data={HOME_FOUNDER_BLOCK} group="founder" />
 
-      <section className="section" id="destinations">
-        <div className="container">
-          <Reveal className="max-w-[60ch]">
-            <h2 className="h2">Seven regions. One operator who knows the roads.</h2>
-            <p className="lede" style={{ marginTop: "var(--space-sm)" }}>
-              Every region below is built place by place from our own routes, not a brochure
-              list. Pick one, or tell us the shape of the trip you&apos;re after.
-            </p>
-          </Reveal>
-          <div style={{ marginTop: "var(--space-xl)" }}>
-            <Mosaic tiles={HOME_MOSAIC} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-dark">
-        <div className="container">
-          <Reveal className="max-w-[60ch]">
-            <h2 className="h2">Trips we&apos;ve already built, ready to adapt to you.</h2>
-          </Reveal>
-          <div style={{ marginTop: "var(--space-xl)" }}>
-            <hr className="rule" style={{ marginTop: 0 }} />
-            <SignatureRoutes routes={HOME_SIGNATURE_ROUTES} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="reviews">
-        <div className="container">
-          <Reveal className="max-w-[60ch]">
-            <h2 className="h2">What travelers say, straight from Google.</h2>
-            <div className="testimonials-source">
-              <div className="testimonials-source__rating">
-                <span className="testimonials-source__score">5.0</span>
-                <Stars rating={5} className="testimonials-source__stars" />
-              </div>
-              <a
-                href="https://share.google/9D0WT2HgiJPNx5L6Z"
-                target="_blank"
-                rel="noopener"
-                className="link-accent"
-              >
-                Read all reviews on Google &rarr;
-              </a>
+        <section className="section" id="destinations">
+          <div className="container">
+            <Reveal className="max-w-[60ch]">
+              <h2 className="h2">Seven regions. One operator who knows the roads.</h2>
+              <p className="lede" style={{ marginTop: "var(--space-sm)" }}>
+                Every region below is built place by place from our own routes, not a brochure
+                list. Pick one, or tell us the shape of the trip you&apos;re after.
+              </p>
+            </Reveal>
+            <div style={{ marginTop: "var(--space-xl)" }}>
+              <Mosaic tiles={HOME_MOSAIC} />
             </div>
-          </Reveal>
-        </div>
-        <TestimonialsMarquee />
-      </section>
+          </div>
+        </section>
 
-      <CtaBand
-        heading="Know where you want to go? Let's build the route."
-        background={<TopographyBackground />}
-        actions={
-          <>
-            <Button asChild variant="accent" size="brand">
-              <Link href="/contact/">Start Planning</Link>
-            </Button>
-            <Button asChild variant="brand-ghost" size="brand">
-              <a href={CONTACT.whatsappHref} target="_blank" rel="noopener">
-                WhatsApp Us
-              </a>
-            </Button>
-          </>
-        }
-      />
-    </main>
+        <section className="section section-dark">
+          <div className="container">
+            <Reveal className="max-w-[60ch]">
+              <h2 className="h2">Trips we&apos;ve already built, ready to adapt to you.</h2>
+            </Reveal>
+            <div style={{ marginTop: "var(--space-xl)" }}>
+              <hr className="rule" style={{ marginTop: 0 }} />
+              <SignatureRoutes routes={HOME_SIGNATURE_ROUTES} />
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="reviews">
+          <div className="container">
+            <Reveal className="max-w-[60ch]">
+              <h2 className="h2">What travelers say, straight from Google.</h2>
+              <div className="testimonials-source">
+                <div className="testimonials-source__rating">
+                  <span className="testimonials-source__score">5.0</span>
+                  <Stars rating={5} className="testimonials-source__stars" />
+                </div>
+                <a
+                  href="https://share.google/9D0WT2HgiJPNx5L6Z"
+                  target="_blank"
+                  rel="noopener"
+                  className="link-accent"
+                >
+                  Read all reviews on Google &rarr;
+                </a>
+              </div>
+            </Reveal>
+          </div>
+          <TestimonialsMarquee />
+        </section>
+
+        <CtaBand
+          heading="Know where you want to go? Let's build the route."
+          background={<TopographyBackground />}
+          actions={
+            <>
+              <Button asChild variant="accent" size="brand">
+                <Link href="/contact/">Start Planning</Link>
+              </Button>
+              <Button asChild variant="brand-ghost" size="brand">
+                <a href={CONTACT.whatsappHref} target="_blank" rel="noopener">
+                  WhatsApp Us
+                </a>
+              </Button>
+            </>
+          }
+        />
+      </main>
+    </>
   );
 }
