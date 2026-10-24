@@ -11,6 +11,7 @@ import { StampMark } from "@/components/home/stamp-mark";
 import { SignatureRoutes } from "@/components/home/route-list";
 import { TestimonialsMarquee, Stars } from "@/components/blocks/testimonials-marquee";
 import { TopographyBackground } from "@/components/effects/topography-background";
+import { GoogleMapCard } from "@/components/map";
 import { CONTACT } from "@/data/nav";
 import {
   HOME_SEO,
@@ -29,8 +30,6 @@ const heroImageUrl = HOME_HERO.image.src.startsWith("http")
   : `${SITE_URL}${HOME_HERO.image.src}`;
 
 export const metadata: Metadata = {
-  // absolute: HOME_SEO.title is the full site title already — this stops
-  // the root layout's title.template from appending the brand suffix again.
   title: { absolute: HOME_SEO.title },
   description: HOME_SEO.description,
   alternates: { canonical: `${SITE_URL}/` },
@@ -150,6 +149,15 @@ export default function Home() {
             </Reveal>
           </div>
           <TestimonialsMarquee />
+        </section>
+
+        <section className="section" id="location">
+          <div className="container">
+            <Reveal className="max-w-[60ch] mb-8">
+              <h2 className="h2">Find Us</h2>
+            </Reveal>
+            <GoogleMapCard />
+          </div>
         </section>
 
         <CtaBand

@@ -14,28 +14,30 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@vis.gl/react-google-maps": "^1.10.1",
     "brace-expansion": "^5.0.11",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "cn": "^0.5.0",
     "lucide-react": "^0.460.0",
     "motion": "^11.11.0",
-    "next": "^16.4.0",
+    "next": "^16.4.2",
     "ogl": "^1.0.11",
     "radix-ui": "^1.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.53.0",
     "tailwind-merge": "^2.5.0",
-    "zod": "^3.23.0"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.7.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "eslint": "^9.14.0",
-    "eslint-config-next": "^16.4.0",
-    "shadcn": "^4.16.2",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "shadcn": "^1.0.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.0.0",
     "tw-animate-css": "^1.0.0",
@@ -52,7 +54,8 @@
     "proxy-addr": "^2.0.8",
     "qs": "6.16.0",
     "source-map-js": "^1.2.2",
-    "undici": "^7.29.1"
+    "undici": "^7.29.1",
+    "glob": "^10.4.5"
   },
   "browserslist": [
     "chrome >= 91",
@@ -60,5 +63,8 @@
     "firefox >= 90",
     "safari >= 15",
     "ios_saf >= 15"
-  ]
+  ],
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true
+  }
 }
