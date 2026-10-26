@@ -19,7 +19,19 @@ export function Mosaic({ tiles, group = "mosaic" }: { tiles: MosaicTile[]; group
       {tiles.map((tile) => (
         <Reveal key={tile.href} group={group} asChild>
           <Link href={tile.href} className={cn("mosaic__tile", tile.large && "mosaic__tile--lg")}>
-            <Media image={tile.image} aspect={tile.aspect ?? (tile.large ? "16x9" : "4x5")} priority={tile.large} />
+            {/* No priority here, even for the large tile: these tiles sit
+                well below the fold, and a priority preload for one of them
+                competes with the hero image for LCP bandwidth (shows up as
+                an "LCP request discovery" finding). Lazy by default. */}
+            <Media
+              image={tile.image}
+              aspect={tile.aspect ?? (tile.large ? "16x9" : "4x5")}
+              sizes={
+                tile.large
+                  ? "(max-width: 639px) 100vw, 67vw"
+                  : "(max-width: 639px) 50vw, 33vw"
+              }
+            />
             <div className="mosaic__name">
               <h3 className="h3">{tile.name}</h3>
               {tile.meta && <span className="meta">{tile.meta}</span>}
