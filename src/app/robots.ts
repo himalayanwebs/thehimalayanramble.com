@@ -6,11 +6,29 @@ export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/partners/", "/partner-resources/"],
-    },
-    sitemap: "https://thehimalayanramble.com/sitemap.xml",
+    rules: [
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+      },
+      {
+        userAgent: "GPTBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+      },
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/partners/", "/partner-resources/"],
+      },
+    ],
+    sitemap: "https://www.thehimalayanramble.com/sitemap.xml",
   };
 }
