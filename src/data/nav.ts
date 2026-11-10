@@ -106,14 +106,14 @@ export const CONTACT = {
     "https://api.whatsapp.com/send/?phone=917650099770&text&type=phone_number&app_absent=0",
   address:
     "Ground Floor, Rathore Complex, Dhalli Bypass, Sanjauli, Shimla, Himachal Pradesh 171006",
-  hours: "Mon–Sat, 9:00 AM–6:00 PM",
+  hours: "24x7",
 };
 
 export const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/himalayanramble/" },
   { label: "Facebook", href: "https://www.facebook.com/himalayanramble/" },
   { label: "X (Twitter)", href: "https://x.com/HimalayanRamble" },
-  { label: "YouTube", href: "https://www.youtube.com/channel/UCp5h3rPKeYI9ciOJAjCWQ2g" },
+  { label: "YouTube", href: "https://www.youtube.com/@HimalayanRamble" },
   { label: "WhatsApp", href: "https://api.whatsapp.com/send/?phone=917650099770&text&type=phone_number&app_absent=0" },
   {
     label: "TripAdvisor",

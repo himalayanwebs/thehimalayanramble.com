@@ -27,7 +27,7 @@ const SOCIALS = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/channel/UCp5h3rPKeYI9ciOJAjCWQ2g",
+    href: "https://www.youtube.com/@HimalayanRamble",
     path: (
       <>
         <rect x="3" y="6" width="18" height="12" rx="3" />
