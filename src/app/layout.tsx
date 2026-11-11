@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { WebMcpTools } from "@/components/agent/webmcp-tools";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -45,6 +46,7 @@ export default function RootLayout({
           }}
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="llms" href="/llms.txt" />
         {/* Preload the two above-the-fold brand faces (self-hosted, @font-face
             in globals.css). Started at HTML-parse time rather than after CSS
             parse + font discovery, which shortens the fallback-font window
@@ -98,6 +100,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WebMcpTools />
       </body>
     </html>
   );

@@ -1,0 +1,33 @@
+# Content Signals Policy: https://contentsignals.org/
+# Search indexing and AI question-answering are allowed; model training is not.
+# Repeated inside every named group because RFC 9309 group selection means a
+# named crawler ignores the * group.
+
+User-Agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /partners/
+Disallow: /partner-resources/
+
+User-Agent: Googlebot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-Agent: Bingbot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-Agent: OAI-SearchBot
+User-Agent: ChatGPT-User
+User-Agent: Claude-SearchBot
+User-Agent: Claude-User
+User-Agent: PerplexityBot
+User-Agent: Perplexity-User
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-Agent: GPTBot
+Content-Signal: search=no, ai-input=no, ai-train=no
+Disallow: /
+
+Sitemap: https://thehimalayanramble.com/sitemap.xml

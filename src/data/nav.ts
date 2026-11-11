@@ -93,6 +93,7 @@ export const NAV_REGIONS: NavRegion[] = [
 
 export const PRIMARY_NAV = [
   { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact Us" },
   { href: "/blog/", label: "Blog" },
   { href: "/terms/", label: "Terms & Conditions" },

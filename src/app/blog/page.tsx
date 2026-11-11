@@ -22,6 +22,65 @@ export const metadata: Metadata = {
 
 const regions = getAllRegions();
 
+const SITE_URL = "https://thehimalayanramble.com";
+
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Blog",
+      "@id": `${SITE_URL}/blog/#blog`,
+      name: "The Himalayan Ramble — Field Notes",
+      description:
+        "Region-by-region field notes from The Himalayan Ramble covering Himachal Pradesh, Ladakh, Jammu & Kashmir, Uttarakhand, Sikkim, Delhi, and Chandigarh.",
+      url: `${SITE_URL}/blog/`,
+      publisher: {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "The Himalayan Ramble",
+        url: SITE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/assets/logo.webp`,
+        },
+      },
+      blogPost: regions.flatMap((region) =>
+        region.places.map((place) => ({
+          "@type": "BlogPosting",
+          headline: `${place.name} travel guide`,
+          description: place.hook,
+          url: `${SITE_URL}/${region.slug}/${place.slug}/`,
+          image: place.image.src.startsWith("http")
+            ? place.image.src
+            : `${SITE_URL}${place.image.src}`,
+          about: {
+            "@type": "TouristDestination",
+            name: place.name,
+          },
+        }))
+      ),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/blog/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${SITE_URL}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: `${SITE_URL}/blog/`,
+        },
+      ],
+    },
+  ],
+};
+
 // The blog index's per-region intro is its own distinct copy, not the same
 // text as that region's own index page (region.placesLede) — ported
 // verbatim from legacy blog.html.
@@ -40,7 +99,12 @@ const BLOG_LEDES: Record<string, string> = {
 
 export default function BlogPage() {
   return (
-    <main id="main">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+      <main id="main">
       <section className="hero" style={{ minHeight: "56vh" }}>
         <div className="hero__media">
           <Media
@@ -122,6 +186,7 @@ export default function BlogPage() {
           </Button>
         }
       />
-    </main>
+      </main>
+    </>
   );
 }

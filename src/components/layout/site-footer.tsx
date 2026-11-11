@@ -114,6 +114,7 @@ export function SiteFooter() {
           </h3>
           <ul className="flex flex-col gap-2">
             <li><Link href="/" className="font-semibold hover:text-brand-accent">Home</Link></li>
+            <li><Link href="/about/" className="font-semibold hover:text-brand-accent">About</Link></li>
             <li><Link href="/blog/" className="font-semibold hover:text-brand-accent">Blog</Link></li>
             <li><Link href="/contact/" className="font-semibold hover:text-brand-accent">Contact Us</Link></li>
             <li><Link href="/terms/" className="font-semibold hover:text-brand-accent">Terms &amp; Conditions</Link></li>

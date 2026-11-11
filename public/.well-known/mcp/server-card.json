@@ -1,0 +1,125 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "name": "the-himalayan-ramble",
+  "title": "The Himalayan Ramble",
+  "description": "Destination search, contact details, and trip-enquiry tools for The Himalayan Ramble, a Shimla-based, government-approved Himalayan travel operator running customized trips since 2000.",
+  "websiteUrl": "https://thehimalayanramble.com/",
+  "documentationUrl": "https://thehimalayanramble.com/llms.txt",
+  "iconUrl": "https://thehimalayanramble.com/assets/logo.webp",
+  "serverInfo": {
+    "name": "the-himalayan-ramble",
+    "title": "The Himalayan Ramble",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "/mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://thehimalayanramble.com/mcp",
+      "supportedProtocolVersions": ["2025-06-18"]
+    }
+  ],
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  },
+  "instructions": "Use these tools to find a Himalayan destination, get the operator's contact details, or build a prefilled trip-enquiry URL. The website also registers the same tools in the browser through WebMCP (document.modelContext, with navigator.modelContext as the legacy fallback) on page load.",
+  "tools": [
+    {
+      "name": "search_destinations",
+      "title": "Search destinations",
+      "description": "Search The Himalayan Ramble's seven regions and their destinations by name.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Region or place name, for example Spiti, Ladakh, or Shimla."
+          }
+        },
+        "required": ["query"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_contact_details",
+      "title": "Get contact details",
+      "description": "Return the operator's phone, WhatsApp, email, office address, hours, and approvals.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "build_trip_enquiry_url",
+      "title": "Build trip-enquiry URL",
+      "description": "Build a contact-page URL prefilled with a destination so the user can start a trip enquiry.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "type": "string",
+            "description": "Optional destination name to prefill, for example Spiti or Ladakh."
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://thehimalayanramble.com/llms.txt",
+      "name": "Site guide for language models",
+      "description": "Markdown overview of the operator, destinations, signature routes, and agent resources.",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://thehimalayanramble.com/index.md",
+      "name": "Markdown home page",
+      "description": "Token-light Markdown version of the home page.",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://thehimalayanramble.com/sitemap.xml",
+      "name": "XML sitemap",
+      "description": "Every indexable URL on the site with last-modified dates.",
+      "mimeType": "application/xml"
+    }
+  ],
+  "prompts": [],
+  "contact": {
+    "name": "The Himalayan Ramble",
+    "url": "https://thehimalayanramble.com/contact/",
+    "email": "thehimalayanramble@gmail.com"
+  }
+}

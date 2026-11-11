@@ -16,6 +16,62 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_URL = "https://thehimalayanramble.com";
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": `${SITE_URL}/contact/#webpage`,
+      url: `${SITE_URL}/contact/`,
+      name: "Contact The Himalayan Ramble",
+      description:
+        "Plan your Himalayan trip with The Himalayan Ramble — Shimla-based, government-approved operator since 2000.",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+      breadcrumb: { "@id": `${SITE_URL}/contact/#breadcrumb` },
+      inLanguage: "en-IN",
+    },
+    {
+      "@type": ["TravelAgency", "LocalBusiness"],
+      "@id": `${SITE_URL}/#organization`,
+      name: "The Himalayan Ramble",
+      url: SITE_URL,
+      telephone: CONTACT.phone,
+      email: CONTACT.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Ground Floor, Rathore Complex, Dhalli Bypass, Sanjauli",
+        addressLocality: "Shimla",
+        addressRegion: "Himachal Pradesh",
+        postalCode: "171006",
+        addressCountry: "IN",
+      },
+      openingHours: "Mo-Su 00:00-23:59",
+      sameAs: SOCIAL_LINKS.map((link) => link.href),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/contact/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${SITE_URL}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Contact Us",
+          item: `${SITE_URL}/contact/`,
+        },
+      ],
+    },
+  ],
+};
+
 // Icons for the 3 socials the original contact page surfaces alongside the
 // office details (footer shows all 6; this "Follow Along" card is a subset).
 const FOLLOW_LINKS = [
@@ -50,7 +106,12 @@ const FOLLOW_LINKS = [
 
 export default function ContactPage() {
   return (
-    <main id="main">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
+      <main id="main">
       <section className="section section--tight" style={{ paddingBottom: 0 }}>
         <div className="container">
           <h1 className="h2">Let&rsquo;s plan your Himalayan trip.</h1>
@@ -144,6 +205,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

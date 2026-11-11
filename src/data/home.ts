@@ -46,6 +46,39 @@ export const HOME_FOUNDER_BLOCK: FeatureBlockData = {
   ],
 };
 
+export const HOME_FAQS = [
+  {
+    question: "Where is The Himalayan Ramble based?",
+    answer:
+      "The office is in Shimla, Himachal Pradesh — Ground Floor, Rathore Complex, Dhalli Bypass, Sanjauli, Shimla 171006. The operator has worked from Shimla since 2000.",
+  },
+  {
+    question: "Which regions do you cover?",
+    answer:
+      "Seven regions: Himachal Pradesh, Ladakh, Jammu & Kashmir, Uttarakhand, Sikkim, Delhi, and Chandigarh.",
+  },
+  {
+    question: "Are you government-approved?",
+    answer:
+      "Yes. The Himalayan Ramble is approved by the Department of Tourism, Himachal Pradesh, and the Ministry of Tourism, Government of India.",
+  },
+  {
+    question: "How do I book a trip?",
+    answer:
+      "Send an enquiry through the contact form, call or WhatsApp +91 76500 99770, or email thehimalayanramble@gmail.com. We reply within one business day. No booking or payment happens on the website; every trip starts with a conversation.",
+  },
+  {
+    question: "Can you customize an itinerary?",
+    answer:
+      "Yes. Every itinerary is built around your dates, group size, fitness, and what you want to see, using current road and permit conditions rather than a fixed departure calendar.",
+  },
+  {
+    question: "When is the best time to visit Spiti?",
+    answer:
+      "Most road trips run May to October. The Frozen Spiti Valley winter route runs November to February for ice climbing, snowshoeing, and snowbound monasteries.",
+  },
+];
+
 export const HOME_MOSAIC: MosaicTile[] = [
   {
     href: "/himachal-pradesh/",

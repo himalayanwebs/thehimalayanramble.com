@@ -7,6 +7,11 @@
 # doesn't read .htaccess this file is simply ignored, not harmful.
 RewriteEngine On
 
+# Serve Markdown prose (not the RSC .txt payloads Next emits) when an agent
+# asks for text/markdown in the Accept header. Apache sets the response
+# Content-Type, which server-side Next.js cannot do in a static export.
+AddType text/markdown .md
+
 # Canonical host: one redirect from www (and http, where this file sees the
 # request before any host-level upgrade) to the apex https URL that the
 # sitemap, metadataBase, and every canonical link tag already use. Serves
@@ -14,6 +19,12 @@ RewriteEngine On
 # a redirect hop for the diagnostics tool when it probes the www host.
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://thehimalayanramble.com%{REQUEST_URI} [R=301,L]
+
+# Content negotiation for agents that prefer Markdown: map the home page to
+# /index.md and advertise Accept variance so caches keep both variants apart.
+RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+RewriteCond %{REQUEST_URI} ^/(index\.html)?$
+RewriteRule ^ /index.md [L]
 
 # /index.html -> /
 RewriteRule ^index\.html$ / [R=301,L]
@@ -89,4 +100,31 @@ RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
   <If "%{REQUEST_URI} =~ m#^/_next/static/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
+</IfModule>
+
+# --- Agent discovery headers ---
+# RFC 8288 Link header on the home page points agents at the Markdown
+# alternate and the llms.txt guide even when they only read response headers.
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/(index\.html|index\.md)?$#">
+    Header always set Link "<https://thehimalayanramble.com/llms.txt>; rel=\"llms\"; type=\"text/plain\", <https://thehimalayanramble.com/index.md>; rel=\"alternate\"; type=\"text/markdown\""
+    Header always append Vary "Accept"
+  </If>
+
+  # The MCP server card is a cross-origin discovery document, so agents
+  # fetching it from another origin need CORS to read the JSON.
+  <If "%{REQUEST_URI} =~ m#^/\.well-known/mcp/server-card\.json$#">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type"
+    Header always set Cache-Control "public, max-age=3600"
+  </If>
+</IfModule>
+
+# Markdown and plain-text agent files revalidate rather than inheriting a
+# stale HTML cache policy.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(md|txt)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
 </IfModule>

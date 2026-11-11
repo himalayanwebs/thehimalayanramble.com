@@ -1,0 +1,97 @@
+# The Himalayan Ramble
+
+> Shimla-based, government-approved Himalayan travel operator running customized trips across Himachal Pradesh, Ladakh, Jammu & Kashmir, Uttarakhand, Sikkim, Delhi, and Chandigarh since 2000.
+
+The Himalayan Ramble plans custom Himalayan trips — trekking, rafting, winter expeditions, and cultural tours — with licensed local guides. The office is at Ground Floor, Rathore Complex, Dhalli Bypass, Sanjauli, Shimla, Himachal Pradesh 171006, India. Phone/WhatsApp: +91 76500 99770. Email: thehimalayanramble@gmail.com. Hours: 24x7. Approvals: Department of Tourism, Himachal Pradesh, and Ministry of Tourism, Government of India.
+
+## Key pages
+
+- [Home](https://thehimalayanramble.com/): Operator overview, seven regions, signature routes, reviews, location, and FAQs.
+- [About](https://thehimalayanramble.com/about/): Company history, founder, approvals, and how trips are planned.
+- [Contact](https://thehimalayanramble.com/contact/): Trip enquiry form, phone, WhatsApp, email, and office address.
+- [Blog / field notes](https://thehimalayanramble.com/blog/): Region-by-region destination guides.
+- [Terms & Conditions](https://thehimalayanramble.com/terms/): Booking, payment, cancellation, privacy, and liability terms.
+- [Sitemap](https://thehimalayanramble.com/sitemap.xml): Every indexable URL with last-modified dates.
+- [Markdown home page](https://thehimalayanramble.com/index.md): Token-light Markdown version of the home page.
+
+## Destinations
+
+### Himachal Pradesh
+
+- [Himachal Pradesh](https://thehimalayanramble.com/himachal-pradesh/): Shimla, Manali, Spiti, Kinnaur, and Kullu — the operator's home region.
+  - [Shimla](https://thehimalayanramble.com/himachal-pradesh/shimla/)
+  - [Manali](https://thehimalayanramble.com/himachal-pradesh/manali/)
+  - [Spiti](https://thehimalayanramble.com/himachal-pradesh/spiti/)
+  - [Kinnaur](https://thehimalayanramble.com/himachal-pradesh/kinnaur/)
+  - [Kullu](https://thehimalayanramble.com/himachal-pradesh/kullu/)
+
+### Ladakh
+
+- [Ladakh](https://thehimalayanramble.com/ladakh/): High-altitude desert, monasteries, and passes above 5,000m.
+  - [Leh](https://thehimalayanramble.com/ladakh/leh/)
+  - [Nubra Valley](https://thehimalayanramble.com/ladakh/nubra-valley/)
+  - [Pangong Lake](https://thehimalayanramble.com/ladakh/pangong-lake/)
+  - [Zanskar](https://thehimalayanramble.com/ladakh/zanskar/)
+  - [Kargil](https://thehimalayanramble.com/ladakh/kargil/)
+
+### Jammu & Kashmir
+
+- [Jammu & Kashmir](https://thehimalayanramble.com/jammu-and-kashmir/): Houseboats, ski slopes, and pilgrim routes.
+  - [Srinagar](https://thehimalayanramble.com/jammu-and-kashmir/srinagar/)
+  - [Gulmarg](https://thehimalayanramble.com/jammu-and-kashmir/gulmarg/)
+  - [Pahalgam](https://thehimalayanramble.com/jammu-and-kashmir/pahalgam/)
+  - [Sonmarg](https://thehimalayanramble.com/jammu-and-kashmir/sonmarg/)
+  - [Jammu](https://thehimalayanramble.com/jammu-and-kashmir/jammu/)
+
+### Uttarakhand
+
+- [Uttarakhand](https://thehimalayanramble.com/uttarakhand/): Lake-side hill stations, the Ganges at Rishikesh, and skiing under Nanda Devi.
+  - [Nainital](https://thehimalayanramble.com/uttarakhand/nainital/)
+  - [Mussoorie](https://thehimalayanramble.com/uttarakhand/mussoorie/)
+  - [Rishikesh](https://thehimalayanramble.com/uttarakhand/rishikesh/)
+  - [Dehradun](https://thehimalayanramble.com/uttarakhand/dehradun/)
+  - [Auli](https://thehimalayanramble.com/uttarakhand/auli/)
+
+### Sikkim
+
+- [Sikkim](https://thehimalayanramble.com/sikkim/): Kangchenjunga views and the old Silk Route border pass.
+  - [Gangtok](https://thehimalayanramble.com/sikkim/gangtok/)
+  - [Pelling](https://thehimalayanramble.com/sikkim/pelling/)
+  - [Lachung](https://thehimalayanramble.com/sikkim/lachung/)
+  - [Yumthang Valley](https://thehimalayanramble.com/sikkim/yumthang-valley/)
+  - [Nathula](https://thehimalayanramble.com/sikkim/nathula/)
+
+### Delhi
+
+- [Delhi](https://thehimalayanramble.com/delhi/): The gateway most Himalaya-bound trips pass through first.
+  - [Connaught Place](https://thehimalayanramble.com/delhi/connaught-place/)
+  - [Chandni Chowk](https://thehimalayanramble.com/delhi/chandni-chowk/)
+  - [India Gate](https://thehimalayanramble.com/delhi/india-gate/)
+  - [Qutub Minar](https://thehimalayanramble.com/delhi/qutub-minar/)
+  - [Humayun's Tomb](https://thehimalayanramble.com/delhi/humayuns-tomb/)
+
+### Chandigarh
+
+- [Chandigarh](https://thehimalayanramble.com/chandigarh/): India's first planned city and the last stop before Himachal on most routes north.
+  - [Sector 17](https://thehimalayanramble.com/chandigarh/sector-17/)
+  - [Rock Garden](https://thehimalayanramble.com/chandigarh/rock-garden/)
+  - [Sukhna Lake](https://thehimalayanramble.com/chandigarh/sukhna-lake/)
+  - [Rose Garden](https://thehimalayanramble.com/chandigarh/rose-garden/)
+  - [Capitol Complex](https://thehimalayanramble.com/chandigarh/capitol-complex/)
+
+## Signature routes
+
+- [Frozen Spiti Valley](https://thehimalayanramble.com/himachal-pradesh/spiti/): 7 nights / 8 days, November–February. Ice climbing, snowbound monasteries, and snowshoeing.
+- [Kinnaur – Spiti – Chandratal – Manali](https://thehimalayanramble.com/himachal-pradesh/kinnaur/): 9 nights / 10 days, May–October. Apple orchards, high-altitude desert, and Chandratal.
+- [Shimla – Kullu – Manali](https://thehimalayanramble.com/himachal-pradesh/shimla/): Custom duration, year-round. The classic Himachal route.
+- [Zanskar Range Expedition](https://thehimalayanramble.com/ladakh/zanskar/): Custom duration, July–September. Advanced trekking and Class III–V rafting.
+
+## Agent resources
+
+- [robots.txt](https://thehimalayanramble.com/robots.txt): Crawl rules plus a Content Signals policy (search=yes, ai-input=yes, ai-train=no).
+- [MCP server card](https://thehimalayanramble.com/.well-known/mcp/server-card.json): Machine-readable description of the site's WebMCP tools.
+- [Markdown home page](https://thehimalayanramble.com/index.md): Same core content as the home page in Markdown.
+
+## Use and attribution
+
+Content is available for search indexing and AI-assisted answers with attribution to The Himalayan Ramble and a link to the source page. It is not licensed for AI model training. Pricing and itineraries are built per enquiry, so confirm current details by phone, WhatsApp, or the contact form.

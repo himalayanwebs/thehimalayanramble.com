@@ -35,6 +35,9 @@ export function MobileNavPanel({
           <NavLink href="/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
             Home
           </NavLink>
+          <NavLink href="/about/" onClick={closeAndGo} className="border-b border-rule py-3 font-display font-semibold text-ink">
+            About
+          </NavLink>
 
           <Accordion type="single" collapsible>
             <AccordionItem value="destinations" className="border-rule">

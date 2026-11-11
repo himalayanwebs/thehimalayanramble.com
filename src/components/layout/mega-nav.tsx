@@ -90,6 +90,12 @@ export function MegaNav() {
           </NavLink>
         </NavigationMenuItem>
 
+        <NavigationMenuItem>
+          <NavLink href="/about/" className="nav-link">
+            About
+          </NavLink>
+        </NavigationMenuItem>
+
         <NavigationMenuItem onFocus={() => setOpenRegion((r) => r ?? NAV_REGIONS[0].slug)}>
           <NavigationMenuPrimitive.Trigger asChild>
             <Link href="/blog/" className="nav-link group">
