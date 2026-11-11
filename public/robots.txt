@@ -27,7 +27,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-Agent: GPTBot
-Content-Signal: search=no, ai-input=no, ai-train=no
-Disallow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
 
 Sitemap: https://thehimalayanramble.com/sitemap.xml

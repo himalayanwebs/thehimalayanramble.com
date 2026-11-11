@@ -8,8 +8,8 @@
 RewriteEngine On
 
 # Serve Markdown prose (not the RSC .txt payloads Next emits) when an agent
-# asks for text/markdown in the Accept header. Apache sets the response
-# Content-Type, which server-side Next.js cannot do in a static export.
+# asks for text/markdown in the Accept header. The Next.js proxy handles clean
+# URLs; this covers hosts that serve /index.md and other static files directly.
 AddType text/markdown .md
 
 # Canonical host: one redirect from www (and http, where this file sees the
@@ -20,8 +20,8 @@ AddType text/markdown .md
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://thehimalayanramble.com%{REQUEST_URI} [R=301,L]
 
-# Content negotiation for agents that prefer Markdown: map the home page to
-# /index.md and advertise Accept variance so caches keep both variants apart.
+# Belt-and-braces content negotiation for hosts that hand clean URLs to
+# Apache/LiteSpeed instead of the Next.js proxy.
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
 RewriteCond %{REQUEST_URI} ^/(index\.html)?$
 RewriteRule ^ /index.md [L]
@@ -60,10 +60,11 @@ RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
 </IfModule>
 
 # --- Cache lifetimes ---
-# PageSpeed "Use efficient cache lifetimes" — this is a static export with no
-# app server, so cache headers can only be set here, at the host. Next.js
-# content-hashes everything under /_next/static/ (filename changes on every
-# rebuild), so it's safe to cache for a year as immutable. Photos under
+# PageSpeed "Use efficient cache lifetimes" — Next.js sets headers on app
+# routes; these rules cover static files and hosts that front the app with
+# Apache/LiteSpeed. Next.js content-hashes everything under /_next/static/
+# (filename changes on every rebuild), so it's safe to cache for a year as
+# immutable. Photos under
 # /graphics/ and /assets/ keep their filenames across rebuilds, so they get a
 # long-but-not-forever cache instead — long enough to matter for PageSpeed,
 # short enough that replacing a file under the same name still refreshes
@@ -107,7 +108,7 @@ RewriteRule ^([^/]+)/([^/]+)\.html$ /$1/$2/ [R=301,L]
 # alternate and the llms.txt guide even when they only read response headers.
 <IfModule mod_headers.c>
   <If "%{REQUEST_URI} =~ m#^/(index\.html|index\.md)?$#">
-    Header always set Link "<https://thehimalayanramble.com/llms.txt>; rel=\"llms\"; type=\"text/plain\", <https://thehimalayanramble.com/index.md>; rel=\"alternate\"; type=\"text/markdown\""
+    Header always set Link "<https://thehimalayanramble.com/llms.txt>; rel=llms, <https://thehimalayanramble.com/index.md>; rel=alternate"
     Header always append Vary "Accept"
   </If>
 

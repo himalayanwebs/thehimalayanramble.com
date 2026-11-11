@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getAllRegions, getAllPlaces } from "@/data";
 
-// Required by output: "export" — without this, Next can't confirm the
-// route is fully static at build time and the export fails.
+// Keep the route prerendered at build time so /sitemap.xml needs no runtime
+// data dependency.
 export const dynamic = "force-static";
 
 const SITE_URL = "https://thehimalayanramble.com";
